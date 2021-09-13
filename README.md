@@ -80,7 +80,7 @@ The steps for installing and deploying Software Project easily is as follows:
                   <li><code>./webpack.config.js</code><br><code>apiUrl: “http://127.0.0.1:8000”,</code></li>
             </ul>      
       <li>Install the front-end project, in CLI:  <code>npm install</code></li>   
-      <li>npm start  The front-end is now running on http://127.0.0.1:8000/ </li> 
+      <li>Run the front-end project <code>npm start</code>  The front-end is now running on http://127.0.0.1:8000/ </li> 
 </ol>
 
 ### 2. To start a back-end for developing:
