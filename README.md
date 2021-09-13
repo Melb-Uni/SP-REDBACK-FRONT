@@ -11,13 +11,13 @@ In Semester 2, 2021, in order to make it easier to distinguish from the previous
 
 Branch management is composed of the following parts:
 
-sm2-demo is a demo for running in local environments. It is updated by Yingpeng Tan.
+- sm2-demo is a demo for running in local environments. It is updated by Yingpeng Tan.
 
-sm2-jira is the branch of new features on Jira part. It is updated by Yixiao Zhang and Yingpeng Tan.
+- sm2-jira is the branch of new features on Jira part. It is updated by Yixiao Zhang and Yingpeng Tan.
 
-sm2-git is the branch of new features on Git part. It is updated by Shisheng Liu and Qiuyuan Huang.
+- sm2-git is the branch of new features on Git part. It is updated by Shisheng Liu and Qiuyuan Huang.
 
-sm2-confluence is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
+- sm2-confluence is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
 
 # Table of Contents
 [1.0 Project Overview](#1.0)
@@ -66,9 +66,16 @@ The steps for installing and deploying Software Project easily is as follows:
 
 ### 1. To start a front-end for developing:
 
-1. install npm, can refer to https://www.npmjs.com/get-npm  
-2. Install the front-end project, in CLI:  npm install   
-3. npm start  The front-end is now running on hhttp://18.167.74.23:18000/api/v1  
+1. install npm, can refer to https://www.npmjs.com/get-npm
+ * Please ensure the version of `nodeJS >= 10` `npm >= 5`
+  * To upgrade your nodeJS:
+   `Sudo npm cache clean -f`
+   `Sudo npm install -g n`
+   `Sudo n stable`
+  * To upgrade your npm:
+   `Sudo npm update -g`
+1. Install the front-end project, in CLI:  npm install   
+1. npm start  The front-end is now running on http://18.167.74.23:18000/api/v1  
 
 ### 2. To start a back-end for developing:
 
