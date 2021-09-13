@@ -6,6 +6,18 @@
 
 This project aims to have a software system that automatically gathers and summarise all aspects of the software engineering activities of CIS (Computing and Information Systems) Software Projects (COMP90082) developed. This will allow course coordinators to monitor and promptly provide meaningful feedback to teams, improve the quality of processes used in development and software systems developed, thus ensuring software deployment at the end of every project.
 
+# Management of branches and releases
+In Semester 2, 2021, in order to make it easier to distinguish from the previous work, there is an instruction of branch and release management.
+
+Branch management is composed of the following parts:
+
+sm2-demo is a demo for running in local environments. It is updated by Yingpeng Tan.
+
+sm2-jira is the branch of new features on Jira part. It is updated by Yixiao Zhang and Yingpeng Tan.
+
+sm2-git is the branch of new features on Git part. It is updated by Shisheng Liu and Qiuyuan Huang.
+
+sm2-confluence is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
 
 # Table of Contents
 [1.0 Project Overview](#1.0)
