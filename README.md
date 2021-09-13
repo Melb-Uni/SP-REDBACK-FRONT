@@ -65,18 +65,23 @@ The Software Project application is developed by JavaScript in the front-end and
 The steps for installing and deploying Software Project easily is as follows:
 
 ### 1. To start a front-end for developing:
-
-1. install npm, can refer to https://www.npmjs.com/get-npm
- * Please ensure the version of `nodeJS >= 10` `npm >= 5`
-  * To upgrade your nodeJS:
-   `Sudo npm cache clean -f`
-   `Sudo npm install -g n`
-   `Sudo n stable`
-  * To upgrade your npm:
-   `Sudo npm update -g`
-1. Install the front-end project, in CLI:  npm install   
-1. npm start  The front-end is now running on http://18.167.74.23:18000/api/v1  
-
+<ol>
+      <li>install npm, can refer to https://www.npmjs.com/get-npm</li>
+      <ul>
+       <li>Please ensure the version of `nodeJS >= 10` `npm >= 5`</li>
+       <ul>
+           <li>To upgrade your nodeJS: `Sudo npm cache clean -f` `Sudo npm install -g n` `Sudo n stable`</li>
+           <li>To upgrade your npm:`Sudo npm update -g`</li>
+       </ul>
+      </ul>
+      <li>Before Installation, please change the forwarding address of the frontend to work with the backend locally, the files below need to be modified:
+            <ul>
+                  <li>`./package.json`<br>`“proxy”: “http://127.0.0.1:8000”,`</li>
+                  <li>`./webpack.config.js`<br>apiUrl: “http://127.0.0.1:8000”,</li>
+            </ul>      
+      <li>Install the front-end project, in CLI:  `npm install`</li>   
+      <li>npm start  The front-end is now running on http://18.167.74.23:18000/api/v1 </li> 
+</ol>
 ### 2. To start a back-end for developing:
 
 1. Install Python3.7 and MySQL  
