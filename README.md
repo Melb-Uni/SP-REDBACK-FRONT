@@ -11,13 +11,13 @@ In Semester 2, 2021, in order to make it easier to distinguish from the previous
 
 Branch management is composed of the following parts:
 
-- sm2-demo is a demo for running in local environments. It is updated by Yingpeng Tan.
+- <code>sm2-demo</code> is a demo for running in local environments. It is updated by Yingpeng Tan.
 
-- sm2-jira is the branch of new features on Jira part. It is updated by Yixiao Zhang and Yingpeng Tan.
+- <code>sm2-jira</code> is the branch of new features on Jira part. It is updated by Yixiao Zhang and Yingpeng Tan.
 
-- sm2-git is the branch of new features on Git part. It is updated by Shisheng Liu and Qiuyuan Huang.
+- <code>sm2-git</code> is the branch of new features on Git part. It is updated by Shisheng Liu and Qiuyuan Huang.
 
-- sm2-confluence is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
+- <code>sm2-confluence</code> is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
 
 # Table of Contents
 [1.0 Project Overview](#1.0)
@@ -68,20 +68,21 @@ The steps for installing and deploying Software Project easily is as follows:
 <ol>
       <li>install npm, can refer to https://www.npmjs.com/get-npm</li>
       <ul>
-       <li>Please ensure the version of `nodeJS >= 10` `npm >= 5`</li>
+       <li>Please ensure the version of <code>nodeJS >= 10</code> <code>npm >= 5</code></li>
        <ul>
-           <li>To upgrade your nodeJS: `Sudo npm cache clean -f` `Sudo npm install -g n` `Sudo n stable`</li>
-           <li>To upgrade your npm:`Sudo npm update -g`</li>
+           <li>To upgrade your nodeJS: <code>npm cache clean -f</code> <code>npm install -g n</code> <code>n stable</code></li>
+             <li>To upgrade your npm: <code>npm update -g</code></li>
        </ul>
       </ul>
-      <li>Before Installation, please change the forwarding address of the frontend to work with the backend locally, the files below need to be modified:
+      <li>Before Installation, please change the forwarding address of the frontend to work with the backend locally. The files below need to be modified:
             <ul>
-                  <li>`./package.json`<br>`“proxy”: “http://127.0.0.1:8000”,`</li>
-                  <li>`./webpack.config.js`<br>apiUrl: “http://127.0.0.1:8000”,</li>
+                  <li><code>./package.json</code><br><code> “proxy”: “http://127.0.0.1:8000”,</code></li>
+                  <li><code>./webpack.config.js</code><br><code>apiUrl: “http://127.0.0.1:8000”,</code></li>
             </ul>      
-      <li>Install the front-end project, in CLI:  `npm install`</li>   
-      <li>npm start  The front-end is now running on http://18.167.74.23:18000/api/v1 </li> 
+      <li>Install the front-end project, in CLI:  <code>npm install</code></li>   
+      <li>npm start  The front-end is now running on http://127.0.0.1:8000/ </li> 
 </ol>
+
 ### 2. To start a back-end for developing:
 
 1. Install Python3.7 and MySQL  
