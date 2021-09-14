@@ -11,12 +11,16 @@ export const userActions = {
   login,
   logout,
   getTeamConfluencePages,
+  // getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
+  // getTeamConfluenceComment,
   getTeamCodeMetrics,
   setTeamInfo,
   getConfluenceIndividualData,
+  // Get Individual Confluence Contribution
+  getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
   getConfluenceSpaceByKeyWord,
@@ -58,8 +62,8 @@ function getTeamConfluencePages(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_SUCCESS,
-              formatLineChartData(response)
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_SUCCESS, // Action
+              formatLineChartData(response) // Payload
             )
           );
         } else {
@@ -84,7 +88,42 @@ function getTeamConfluencePages(teamKey) {
     );
   };
 }
-
+/*
+function getTeamConfluenceUpdate(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST));
+    userService.getTeamConfluenceUpdate(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_CONFLUENCE_UPDATE_SUCCESS, // Action
+              response // Payload <-- NEED UPDATE
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_TEAM_CONFLUENCE_UPDATE_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_CONFLUENCE_UPDATE_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+*/
 function getTeamGithubCommits(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_GITHUB_COMMITS_REQUEST));
@@ -184,6 +223,43 @@ function getTeamConfluenceMeeting(teamKey) {
   };
 }
 
+/*
+function getTeamConfluenceComment(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_COMMENT_REQUEST));
+    userService.getTeamConfluenceComment(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_CONFLUENCE_COMMENT_SUCCESS, // Action
+              response // Payload <-- NEED UPDATE
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_TEAM_CONFLUENCE_COMMENT_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_CONFLUENCE_COMMENT_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+*/
+
 function setTeamInfo(
   teamKey,
   jiraUrl,
@@ -269,6 +345,42 @@ function getConfluenceIndividualData(teamKey) {
         dispatch(
           failure(
             userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+
+// Get Individual Confluence Contribution
+function getConfluenceIndividualContribution(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST));
+    userService.getConfluenceIndividualContribution(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_SUCCESS, // Action
+              response.data // Payload <-- NEED UPDATE
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_FAILURE,
             error.toString()
           )
         );

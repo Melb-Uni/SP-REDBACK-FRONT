@@ -1,12 +1,17 @@
+
 export const userService = {
   login,
   getTeamConfluencePages,
+  // getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
+  // getTeamConfluenceComment,
   setTeamInfo,
   getTeamCodeMetrics,
   getConfluenceIndividualData,
+  // Get Individual Confluence Contribution
+  getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
   getImportedProject,
@@ -32,6 +37,23 @@ function getTeamConfluencePages(teamKey) {
       return jsonResponse;
     });
 }
+
+/* Get Team Confluence Update
+function getTeamConfluenceUpdate(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+*/
 
 function getTeamGithubCommits(teamKey) {
   let url = baseUrl + "/git/" + teamKey + "/commit_count";
@@ -70,6 +92,21 @@ function getTeamConfluenceMeeting(teamKey) {
     method: "GET",
     credentials: "include",
   };
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+/* Get Team Confluence Comment
+function getTeamConfluenceComment(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
 
   return fetch(url, requestOptions)
     .then((response) => response.json())
@@ -77,6 +114,7 @@ function getTeamConfluenceMeeting(teamKey) {
       return jsonResponse;
     });
 }
+*/
 
 function setTeamInfo(
   teamKey,
@@ -167,6 +205,23 @@ function getConfluenceIndividualData(teamKey) {
       return jsonResponse;
     });
 }
+
+// Get Individual Confluence Contribution
+function getConfluenceIndividualContribution(teamKey) {
+  // let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions_new"; // Change to the specific link
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
 
 function getConfluenceSpaceByKeyWord(keyWord) {
   let url = baseUrl + "/confluence/spaces/" + keyWord;
