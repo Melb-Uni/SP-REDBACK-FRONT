@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 import { Spin } from "antd";
 import { InformationalNote } from "../_utils/Alert";
 import { alertConstants } from "../_constants";
+// Import Table for displaying the team update table
+import Table from "../_utils/Table";
 
 class ProcessQualityPage extends React.Component {
   constructor(props) {
@@ -21,9 +23,25 @@ class ProcessQualityPage extends React.Component {
         commonConstants.GITHUB,
         commonConstants.JIRA,
       ],
-
       btnSelected: commonConstants.CONFLUENCE,
       scrollPosition: 0,
+      // Update columns START
+      update_columns: [
+        {
+          name: "Time",
+          selector: "time",
+        },
+        {
+          name: "Page Name",
+          selector: "page_name",
+        },
+        {
+          name: "Links",
+          selector: "link",
+          cell: (row) => <a href={row.link}>{row.link}</a>,
+        },
+      ],
+      // Update columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
     };
@@ -36,6 +54,7 @@ class ProcessQualityPage extends React.Component {
     let selected = e.currentTarget.firstChild.innerHTML;
     if (selected == commonConstants.CONFLUENCE) {
       this.props.getTeamConfluencePages(this.props.currentTeamKey);
+      this.props.getTeamConfluenceUpdate(this.props.currentTeamKey);
     } else if (selected == commonConstants.GITHUB) {
       this.props.getTeamGithubCommits(this.props.currentTeamKey);
     } else {
@@ -55,6 +74,7 @@ class ProcessQualityPage extends React.Component {
   componentDidMount() {
     if (this.state.hasConfig) {
       this.props.getTeamConfluencePages(this.props.currentTeamKey);
+      this.props.getTeamConfluenceUpdate(this.props.currentTeamKey);
     }
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -96,6 +116,15 @@ class ProcessQualityPage extends React.Component {
                   <LineChart data={this.props.confluenceData} />
                 )}
               {this.state.hasConfig &&
+                this.state.btnSelected == commonConstants.CONFLUENCE && (
+                  <Table
+                    columns={this.state.update_columns}
+                    data={this.props.confluenceUpdateData}
+                    width={"80vw"}
+                    height={"50vh"}
+                  />)
+              }
+              {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.GITHUB && (
                   <LineChart data={this.props.githubData} />
                 )}
@@ -118,6 +147,7 @@ function mapState(state) {
     requestTeamGithubCommits: state.user.requestTeamGithubCommits,
     requestTeamJiraTickets: state.user.requestTeamJiraTickets,
     confluenceData: state.user.teamConfluencePages,
+    confluenceUpdateData: state.user.teamConfluenceUpdate,
     githubData: state.user.teamGithubCommits,
     jiraData: state.user.teamJiraTickets,
     currentTeamKey: state.user.currentTeamKey,
@@ -128,6 +158,7 @@ function mapState(state) {
 
 const actionCreators = {
   getTeamConfluencePages: userActions.getTeamConfluencePages,
+  getTeamConfluenceUpdate: userActions.getTeamConfluenceUpdate,
   getTeamGithubCommits: userActions.getTeamGithubCommits,
   getTeamJiraTickets: userActions.getTeamJiraTickets,
 };

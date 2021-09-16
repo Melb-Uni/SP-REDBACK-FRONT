@@ -11,7 +11,7 @@ class CommunicationPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      columns: [
+      meeting_columns: [
         {
           name: "Meeting Name",
           selector: "title",
@@ -23,6 +23,26 @@ class CommunicationPage extends React.Component {
           cell: (row) => <a href={row.link}>{row.link}</a>,
         },
       ],
+      // Comment columns START
+      comment_columns: [
+        {
+          name: "Time",
+          selector: "time",
+        },
+        {
+          name: "Page Name",
+          selector: "page_name",
+        },
+        {
+          name: "Comment",
+          selector: "comment content",
+        },
+        {
+          name: "Student Name",
+          selector: "creator",
+        },
+      ],
+      // Comment columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
     };
@@ -31,10 +51,12 @@ class CommunicationPage extends React.Component {
   componentDidMount() {
     if (this.state.hasConfig) {
       this.props.getTeamConfluenceMeeting(this.props.currentTeamKey);
+      this.props.getTeamConfluenceComment(this.props.currentTeamKey);
     }
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="uomcontent">
         {uomHeader("Communication")}
@@ -56,8 +78,18 @@ class CommunicationPage extends React.Component {
               this.props.confluenceData &&
               this.props.confluenceData.length != 0 && (
                 <Table
-                  columns={this.state.columns}
+                  columns={this.state.meeting_columns}
                   data={this.props.confluenceData}
+                  width={"80vw"}
+                  height={"50vh"}
+                />
+              )}
+              {this.state.hasConfig &&
+              this.props.confluenceComment &&
+              this.props.confluenceComment.length != 0 && (
+                <Table
+                  columns={this.state.comment_columns}
+                  data={this.props.confluenceComment}
                   width={"80vw"}
                   height={"50vh"}
                 />
@@ -69,9 +101,12 @@ class CommunicationPage extends React.Component {
   }
 }
 
+// Each field in the object will become a prop for your actual component
+// Ex: confluenceData will be the prop's key, state.user.teamConfluenceMeeting will be the prop's value
 function mapState(state) {
   return {
     confluenceData: state.user.teamConfluenceMeeting,
+    confluenceComment: state.user.teamConfluenceComment,
     currentTeamKey: state.user.currentTeamKey,
     currentTeamName: state.user.currentTeamName,
     teamInfo: state.user.teamInfo,
@@ -80,6 +115,7 @@ function mapState(state) {
 
 const actionCreators = {
   getTeamConfluenceMeeting: userActions.getTeamConfluenceMeeting,
+  getTeamConfluenceComment: userActions.getTeamConfluenceComment,
 };
 
 const Communication = connect(mapState, actionCreators)(CommunicationPage);

@@ -32,7 +32,7 @@ module.exports = {
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: "http://18.167.74.23:18000",
+      apiUrl: "http://127.0.0.0:8000",
     }),
   },
 };
