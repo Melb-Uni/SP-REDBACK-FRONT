@@ -220,7 +220,6 @@ function mapState(state) {
     individualGithubData: state.user.individualGitHubCommits,
     individualConfluenceData: state.user.individualConfluencePages,
     individualJiraData: state.user.individualJiraCounts,
-
     individualJiraContribution: state.user.individualJiraContribution,
     currentTeamKey: state.user.currentTeamKey,
     currentTeamName: state.user.currentTeamName,
@@ -232,7 +231,6 @@ const actionCreators = {
   getGithubIndividualData: userActions.getGithubIndividualData,
   getConfluenceIndividualData: userActions.getConfluenceIndividualData,
   getJiraIndividualData: userActions.getJiraIndividualData,
-
   getJiraIndividualContribution: userActions.getJiraIndividualContribution,
 };
 
