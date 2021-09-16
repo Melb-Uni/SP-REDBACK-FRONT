@@ -26,25 +26,21 @@ class ProcessQualityPage extends React.Component {
       btnSelected: commonConstants.CONFLUENCE,
       scrollPosition: 0,
       // Update columns START
-      /*update_columns: [
+      update_columns: [
         {
           name: "Time",
           selector: "time",
         },
         {
           name: "Page Name",
-          selector: "file_name",
+          selector: "page_name",
         },
         {
           name: "Links",
           selector: "link",
           cell: (row) => <a href={row.link}>{row.link}</a>,
         },
-        {
-          name: "Contributor",
-          selector: "user_name",
-        },
-      ],*/
+      ],
       // Update columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
@@ -78,7 +74,7 @@ class ProcessQualityPage extends React.Component {
   componentDidMount() {
     if (this.state.hasConfig) {
       this.props.getTeamConfluencePages(this.props.currentTeamKey);
-      // this.props.getTeamConfluenceUpdate(this.props.currentTeamKey);
+      this.props.getTeamConfluenceUpdate(this.props.currentTeamKey);
     }
     window.addEventListener("scroll", this.handleScroll);
   }
@@ -119,8 +115,6 @@ class ProcessQualityPage extends React.Component {
                 this.state.btnSelected == commonConstants.CONFLUENCE && (
                   <LineChart data={this.props.confluenceData} />
                 )}
-              {/* 
-
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.CONFLUENCE && (
                   <Table
@@ -128,10 +122,8 @@ class ProcessQualityPage extends React.Component {
                     data={this.props.confluenceUpdateData}
                     width={"80vw"}
                     height={"50vh"}
-                    />)
+                  />)
               }
-              
-              */}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.GITHUB && (
                   <LineChart data={this.props.githubData} />
@@ -155,7 +147,7 @@ function mapState(state) {
     requestTeamGithubCommits: state.user.requestTeamGithubCommits,
     requestTeamJiraTickets: state.user.requestTeamJiraTickets,
     confluenceData: state.user.teamConfluencePages,
-    // confluenceUpdateData: state.user.teamConfluenceUpdate,
+    confluenceUpdateData: state.user.teamConfluenceUpdate,
     githubData: state.user.teamGithubCommits,
     jiraData: state.user.teamJiraTickets,
     currentTeamKey: state.user.currentTeamKey,
@@ -166,7 +158,7 @@ function mapState(state) {
 
 const actionCreators = {
   getTeamConfluencePages: userActions.getTeamConfluencePages,
-  // getTeamConfluenceUpdate: userActions.getTeamConfluenceUpdate,
+  getTeamConfluenceUpdate: userActions.getTeamConfluenceUpdate,
   getTeamGithubCommits: userActions.getTeamGithubCommits,
   getTeamJiraTickets: userActions.getTeamJiraTickets,
 };

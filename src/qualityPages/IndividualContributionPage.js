@@ -125,7 +125,6 @@ class IndividualContributionPage extends React.Component {
                             value={this.state.selectedStudent}
                           />
                         )}
-
                       {this.state.btnSelected === commonConstants.JIRA &&
                         typeof this.props.individualJiraData !== "undefined" &&
                         JSON.stringify(this.props.individualJiraData) !==
@@ -155,14 +154,13 @@ class IndividualContributionPage extends React.Component {
                             dataLabel={"Edited Pages"}
                           />
                         )}
-                      {this.state.btnSelected === commonConstants.CONFLUENCE &&
-                        typeof this.props.individualConfluenceData !==
+                      {this.state.btnSelected === commonConstants.CONFLUENCE && 
+                        typeof this.props.individualConfluenceContributionData !==
                           "undefined" &&
-                        JSON.stringify(this.props.individualConfluenceData) !==
+                        JSON.stringify(this.props.individualConfluenceContributionData) !==
                           "{}" && (
                           <Table
                             columns={this.state.contribution_columns}
-                            // data = {test.data}
                             data = {this.props.individualConfluenceContributionData}
                             width={"80vw"}
                             height={"50vh"}

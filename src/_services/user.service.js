@@ -2,11 +2,13 @@
 export const userService = {
   login,
   getTeamConfluencePages,
-  // getTeamConfluenceUpdate,
+  // Get Team Confluence Updates
+  getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
-  // getTeamConfluenceComment,
+  // Get Confluence Comments
+  getTeamConfluenceComment,
   setTeamInfo,
   getTeamCodeMetrics,
   getConfluenceIndividualData,
@@ -38,9 +40,9 @@ function getTeamConfluencePages(teamKey) {
     });
 }
 
-/* Get Team Confluence Update
+// Get Team Confluence Update
 function getTeamConfluenceUpdate(teamKey) {
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/updated_files";
 
   const requestOptions = {
     method: "GET",
@@ -53,7 +55,6 @@ function getTeamConfluenceUpdate(teamKey) {
       return jsonResponse;
     });
 }
-*/
 
 function getTeamGithubCommits(teamKey) {
   let url = baseUrl + "/git/" + teamKey + "/commit_count";
@@ -99,9 +100,9 @@ function getTeamConfluenceMeeting(teamKey) {
     });
 }
 
-/* Get Team Confluence Comment
+// Get Team Confluence Comment
 function getTeamConfluenceComment(teamKey) {
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/comments";
 
   const requestOptions = {
     method: "GET",
@@ -114,7 +115,7 @@ function getTeamConfluenceComment(teamKey) {
       return jsonResponse;
     });
 }
-*/
+
 
 function setTeamInfo(
   teamKey,
@@ -208,8 +209,8 @@ function getConfluenceIndividualData(teamKey) {
 
 // Get Individual Confluence Contribution
 function getConfluenceIndividualContribution(teamKey) {
-  // let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count"; <-- Update this link
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions_new"; // Change to the specific link
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions_new";
+
   const requestOptions = {
     method: "GET",
     credentials: "include",

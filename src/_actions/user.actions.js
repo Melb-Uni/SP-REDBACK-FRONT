@@ -11,11 +11,13 @@ export const userActions = {
   login,
   logout,
   getTeamConfluencePages,
-  // getTeamConfluenceUpdate,
+  // Get Team Confluence Updates
+  getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
-  // getTeamConfluenceComment,
+  // Get Team Confluence Comments
+  getTeamConfluenceComment,
   getTeamCodeMetrics,
   setTeamInfo,
   getConfluenceIndividualData,
@@ -88,7 +90,7 @@ function getTeamConfluencePages(teamKey) {
     );
   };
 }
-/*
+// Get Team Confluence Updates
 function getTeamConfluenceUpdate(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST));
@@ -97,8 +99,8 @@ function getTeamConfluenceUpdate(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_UPDATE_SUCCESS, // Action
-              response // Payload <-- NEED UPDATE
+              userConstants.GET_TEAM_CONFLUENCE_UPDATE_SUCCESS,
+              response.data
             )
           );
         } else {
@@ -123,7 +125,7 @@ function getTeamConfluenceUpdate(teamKey) {
     );
   };
 }
-*/
+
 function getTeamGithubCommits(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_GITHUB_COMMITS_REQUEST));
@@ -223,7 +225,6 @@ function getTeamConfluenceMeeting(teamKey) {
   };
 }
 
-/*
 function getTeamConfluenceComment(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_CONFLUENCE_COMMENT_REQUEST));
@@ -232,8 +233,8 @@ function getTeamConfluenceComment(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_COMMENT_SUCCESS, // Action
-              response // Payload <-- NEED UPDATE
+              userConstants.GET_TEAM_CONFLUENCE_COMMENT_SUCCESS, 
+              response.data
             )
           );
         } else {
@@ -258,7 +259,6 @@ function getTeamConfluenceComment(teamKey) {
     );
   };
 }
-*/
 
 function setTeamInfo(
   teamKey,

@@ -24,20 +24,24 @@ class CommunicationPage extends React.Component {
         },
       ],
       // Comment columns START
-      /*comment_columns: [
+      comment_columns: [
         {
           name: "Time",
           selector: "time",
         },
         {
           name: "Page Name",
-          selector: "page",
+          selector: "page_name",
         },
         {
           name: "Comment",
-          selector: "comment",
+          selector: "comment content",
         },
-      ],*/
+        {
+          name: "Student Name",
+          selector: "creator",
+        },
+      ],
       // Comment columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
@@ -47,7 +51,7 @@ class CommunicationPage extends React.Component {
   componentDidMount() {
     if (this.state.hasConfig) {
       this.props.getTeamConfluenceMeeting(this.props.currentTeamKey);
-      // this.props.getTeamConfluenceComment(this.props.currentTeamKey);
+      this.props.getTeamConfluenceComment(this.props.currentTeamKey);
     }
   }
 
@@ -80,11 +84,9 @@ class CommunicationPage extends React.Component {
                   height={"50vh"}
                 />
               )}
-              {/*  
-              
               {this.state.hasConfig &&
-              this.props.confluenceData &&
-              this.props.confluenceData.length != 0 && (
+              this.props.confluenceComment &&
+              this.props.confluenceComment.length != 0 && (
                 <Table
                   columns={this.state.comment_columns}
                   data={this.props.confluenceComment}
@@ -92,8 +94,6 @@ class CommunicationPage extends React.Component {
                   height={"50vh"}
                 />
               )}
-            
-              */}
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@ class CommunicationPage extends React.Component {
 function mapState(state) {
   return {
     confluenceData: state.user.teamConfluenceMeeting,
-    // confluenceComment: state.user.teamConfluenceComment,
+    confluenceComment: state.user.teamConfluenceComment,
     currentTeamKey: state.user.currentTeamKey,
     currentTeamName: state.user.currentTeamName,
     teamInfo: state.user.teamInfo,
@@ -115,7 +115,7 @@ function mapState(state) {
 
 const actionCreators = {
   getTeamConfluenceMeeting: userActions.getTeamConfluenceMeeting,
-  // getTeamConfluenceComment: userActions.getTeamConfluenceComment,
+  getTeamConfluenceComment: userActions.getTeamConfluenceComment,
 };
 
 const Communication = connect(mapState, actionCreators)(CommunicationPage);
