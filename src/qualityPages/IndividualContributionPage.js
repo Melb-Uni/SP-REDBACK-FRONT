@@ -11,10 +11,10 @@ import DonutChart from "../_utils/DonutChart";
 import DropdownMenus from "../_utils/DropdownMenus";
 import { InformationalNote } from "../_utils/Alert";
 import { alertConstants } from "../_constants";
-// Import Table for displaying the individual contribution table
-import Table from "../_utils/Table";
-import test from "../result.json";
 
+//Import Modules for Jira Individual Contribution List
+import Table from "../_utils/Table";
+// import jiraContributionTestData from "../jiraContributionResult.json";
 
 class IndividualContributionPage extends React.Component {
   constructor(props) {
@@ -29,18 +29,20 @@ class IndividualContributionPage extends React.Component {
       btnSelected: commonConstants.CONFLUENCE,
       selectedStudent: "All",
       studentList: [],
-      // Contribution columns START
-      contribution_columns: [
+      // Jira Contribution columns START
+      jira_contribution_columns:[
         {
           name: "Student Name",
-          selector: "student", // Change to user_name
+          selector: "student",
         },
         {
-          name: "Page Name",
-          selector: "page_name", // Change to page_name
+          name: "Contribution",
+          selector: "change_log",
+          wrap:true,
+          grow:3,
         },
       ],
-      // Contribution columns END
+      // Jira Contribution columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
     };
@@ -53,12 +55,12 @@ class IndividualContributionPage extends React.Component {
     let picked = e.currentTarget.firstChild.innerHTML;
     if (picked === commonConstants.CONFLUENCE) {
       this.props.getConfluenceIndividualData(this.props.currentTeamKey);
-      // Get Individual Confluence Contribution
-      this.props.getConfluenceIndividualContribution(this.props.currentTeamKey);
     } else if (picked === commonConstants.GITHUB) {
       this.props.getGithubIndividualData(this.props.currentTeamKey);
     } else {
       this.props.getJiraIndividualData(this.props.currentTeamKey);
+
+      this.props.getJiraIndividualContribution(this.props.currentTeamKey);
     }
     this.setState({
       btnSelected: picked,
@@ -73,8 +75,6 @@ class IndividualContributionPage extends React.Component {
   componentDidMount() {
     if (this.state.hasConfig) {
       this.props.getConfluenceIndividualData(this.props.currentTeamKey);
-      // Get Individual Confluence Contribution
-      this.props.getConfluenceIndividualContribution(this.props.currentTeamKey);
     }
   }
 
@@ -125,6 +125,7 @@ class IndividualContributionPage extends React.Component {
                             value={this.state.selectedStudent}
                           />
                         )}
+
                       {this.state.btnSelected === commonConstants.JIRA &&
                         typeof this.props.individualJiraData !== "undefined" &&
                         JSON.stringify(this.props.individualJiraData) !==
@@ -137,7 +138,6 @@ class IndividualContributionPage extends React.Component {
                         )}
                     </Col>
                     <Col>
-                      {/* For Confluence */}
                       {this.state.btnSelected === commonConstants.CONFLUENCE &&
                         typeof this.props.individualConfluenceData !==
                           "undefined" &&
@@ -152,21 +152,8 @@ class IndividualContributionPage extends React.Component {
                               )
                             )}
                             dataLabel={"Edited Pages"}
-                          />
+                          /> 
                         )}
-                      {this.state.btnSelected === commonConstants.CONFLUENCE && 
-                        typeof this.props.individualConfluenceContributionData !==
-                          "undefined" &&
-                        JSON.stringify(this.props.individualConfluenceContributionData) !==
-                          "{}" && (
-                          <Table
-                            columns={this.state.contribution_columns}
-                            data = {this.props.individualConfluenceContributionData}
-                            width={"80vw"}
-                            height={"50vh"}
-                          />
-                        )
-                      }  
                       {this.state.btnSelected === commonConstants.GITHUB &&
                         typeof this.props.individualGithubData !==
                           "undefined" &&
@@ -199,6 +186,24 @@ class IndividualContributionPage extends React.Component {
                           />
                         )}
                     </Col>
+                    <Col>
+                      {this.state.btnSelected === commonConstants.JIRA &&
+                        typeof this.props.individualJiraContribution !== "undefined" &&
+                        JSON.stringify(this.props.individualJiraContribution) !==
+                          "{}" && (
+                          <Table
+                            title="Individual Contribution Details - Jira"
+                            columns={this.state.jira_contribution_columns}
+                            data ={
+                              this.props.individualJiraContribution
+                          
+                              //JSON.parse(this.props.individualJiraContribution).filter(({student})=>student ===this.state.selectedStudent)
+                            }
+                            max-width={"50vw"}
+                            height={"50vh"}
+                          />
+                        )}
+                    </Col>
                   </Row>
                 </Tab.Container>
               </Container>
@@ -212,11 +217,11 @@ class IndividualContributionPage extends React.Component {
 
 function mapState(state) {
   return {
-    individualConfluenceData: state.user.individualConfluencePages,
-    // Individual Confluence Contribution
-    individualConfluenceContributionData: state.user.individualConfluenceContribution,
     individualGithubData: state.user.individualGitHubCommits,
+    individualConfluenceData: state.user.individualConfluencePages,
     individualJiraData: state.user.individualJiraCounts,
+
+    individualJiraContribution: state.user.individualJiraContribution,
     currentTeamKey: state.user.currentTeamKey,
     currentTeamName: state.user.currentTeamName,
     teamInfo: state.user.teamInfo,
@@ -224,11 +229,11 @@ function mapState(state) {
 }
 
 const actionCreators = {
-  getConfluenceIndividualData: userActions.getConfluenceIndividualData,
-  // Get Individual Confluence Contribution
-  getConfluenceIndividualContribution: userActions.getConfluenceIndividualContribution,
   getGithubIndividualData: userActions.getGithubIndividualData,
+  getConfluenceIndividualData: userActions.getConfluenceIndividualData,
   getJiraIndividualData: userActions.getJiraIndividualData,
+
+  getJiraIndividualContribution: userActions.getJiraIndividualContribution,
 };
 
 const Product = connect(mapState, actionCreators)(IndividualContributionPage);
