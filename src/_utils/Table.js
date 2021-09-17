@@ -5,19 +5,23 @@ export const customStyles = {
   header: {
     style: {
       fontWeight: "bold",
-      fontSize: "22px", 
+      fontSize: "22px",
       paddingLeft: "0px",
     },
   },
   headCells: {
     style: {
-      fontSize: "16px", 
+      fontSize: "16px",
       background: "#EEEEEE",
     },
   },
 };
 
 export default function Table(props) {
+
+  console.log(props.columns);
+  console.log(props.data);
+
   return (
     <div style={{ position: "relative", margin: "auto", width: props.width ? props.width : "80vw" }}>
       <DataTable

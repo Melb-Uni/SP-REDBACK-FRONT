@@ -19,6 +19,7 @@ export function formatLineChartData(response) {
       });
     }
   }
+
   return {
     labels: xaxis,
     datasets: datasets,
