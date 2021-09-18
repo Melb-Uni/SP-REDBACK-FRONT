@@ -153,25 +153,15 @@ class IndividualContributionPage extends React.Component {
                             <br/><br/>
                             <table border="1">
                               <tr>
-                                <th><b>Name</b></th>
-                                <th><b>Version</b></th>
+                                <th width="30%">Name</th>
+                                <th width="35">Commit Count</th>
+                                <th width="35%">Version</th>
                               </tr>
-                              <tr>
-                                <td>pete965</td>
-                                <td>docs</td>
-                              </tr>
-                              <tr>
-                                <td>pinwang</td>
-                                <td>get ip dynamically</td>
-                              </tr>
-                              <tr>
-                                <td>Jerry-Shan</td>
-                                <td>Deploy understand to client VM - Accept Testing</td>
-                              </tr>
-                              <tr>
-                                <td>Aquila Qin</td>
-                                <td>Added migration file for jira model changes</td>
-                              </tr>
+                              {
+                                this.props.individualGithubData["All"]["github"].map(function (item) {
+                                  return <tr><td>{item["name"]}</td><td>{item["commit_count"]}</td><td>{item["version"]}</td></tr>
+                                })
+                              }
                             </table>
                           </div>
                         )}

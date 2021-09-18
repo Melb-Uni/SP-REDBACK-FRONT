@@ -93,11 +93,26 @@ class ProcessQualityPage extends React.Component {
             >
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.CONFLUENCE && (
-                  <LineChart data={this.props.confluenceData} />
+                    <LineChart data={this.props.confluenceData} />
                 )}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.GITHUB && (
-                  <LineChart data={this.props.githubData} />
+                    <div>
+                      <LineChart data={this.props.githubData} />
+                      <br/><br/>
+                      <table border="1">
+                        <tr>
+                          <th width="30%">Name</th>
+                          <th width="35">Page Count</th>
+                          <th width="35%">Version</th>
+                        </tr>
+                        {
+                          this.props.githubData["github"].map(function (item) {
+                            return <tr><td>{item["name"]}</td><td>{item["page_count"]}</td><td>{item["version"]}</td></tr>
+                          })
+                        }
+                      </table>
+                    </div>
                 )}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.JIRA && (

@@ -4,8 +4,6 @@ export function formatDonutChartData(response) {
   let rawData = response.data;
   let labelDataMap = getlabelDataMap(rawData);
 
-  console.log(labelDataMap);
-
   let xaxis = [];
   let datasets = [];
   let result = {};
@@ -28,16 +26,11 @@ export function formatDonutChartData(response) {
     labels: xaxis,
     datasets: datasets,
   };
-
-  console.log(formattedData);
-
   let colorForOtherElseStudents = randomColor({
     seed: 2
   });
   let studentList = formattedData.labels.slice();
   studentList.push("All");
-
-  console.log(studentList);
 
   for (let i = 0, len=studentList.length; i < len; i++) {
 
@@ -45,7 +38,23 @@ export function formatDonutChartData(response) {
 
   }
 
-  console.log(result);
+  result["All"]["github"] = []
+  let github_labels = result["All"]["labels"];
+  let github_commits = [];
+  let github_versions = [];
+  let github_datasets = result["All"]["datasets"];
+  for (let i = 0; i < github_datasets.length; i++) {
+    if (github_datasets[i]["label"] === "commit_count") {
+      github_commits = github_datasets[i]["data"];
+    }
+    if (github_datasets[i]["label"] === "version") {
+      github_versions = github_datasets[i]["data"];
+    }
+  }
+  for (let i = 0; i < github_labels.length; i++) {
+    result["All"]["github"].push({"name": github_labels[i], "commit_count": github_commits[i],
+      "version": github_versions[i]})
+  }
 
   return result;
 }
