@@ -4,12 +4,18 @@ const initState = {
   requestIndividualConfluencePages: false,
   requestIndividualGitHubCommits: false,
   requestIndividualJiraCounts: false,
-  // Request Individual Jira Contribution START
-  requestIndividualJiraContribution:false,
-  // Request Individual Jira Contribution END  
+  // Request Individual Confluence Contribution START - Individual Page
+  requestIndividualConfluenceContribution: false,
+  // Request Individual Confluence Contribution END
   requestTeamConfluencePages: false,
   requestTeamGithubCommits: false,
   requestTeamJiraTickets: false,
+  // Request Team Confluence Update START - Process Page
+  requestTeamConfluenceUpdate: false,
+  // Request Team Confluence Update END
+  // Request Team Confluence Comment START - Communication Page
+  requestTeamConfluenceComment: false,
+  // Request Team Confluence Comment END
   requestSetTeamInfo: false,
   requestTeamCodeMetrics: false,
   requestConfluenceSpaceByKeyWord: false,
@@ -29,7 +35,6 @@ export function user(state = initState, action) {
         ...state,
         requestIndividualConfluencePages: true,
       };
-
     case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_SUCCESS:
       return {
         ...state,
@@ -42,6 +47,25 @@ export function user(state = initState, action) {
         requestIndividualConfluencePages: false,
         individualConfluencePages: {},
       };
+    // Individual Confluence Contribution START - Individual
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST:
+      return {
+        ...state,
+        requestIndividualConfluenceContribution: true,
+      };
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_SUCCESS:
+      return {
+        ...state,
+        requestIndividualConfluenceContribution: false,
+        individualConfluenceContribution: action.payload,
+      };
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_FAILURE:
+      return {
+        ...state,
+        requestIndividualConfluenceContribution: false,
+        individualConfluenceContribution: {},
+      };
+    // Individual Confluence Contribution END
     case userConstants.GET_INDIVIDUAL_GITHUB_COMMITS_REQUEST:
       return {
         ...state,
@@ -78,29 +102,6 @@ export function user(state = initState, action) {
         requestIndividualJiraCounts: false,
         individualJiraCounts: {},
       };
-
-// INDIVIDUAL_JIRA_CONTRIBUTION START
-    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_REQUEST:
-        return {
-          ...state,
-          requestIndividualJiraContribution: true,
-      };
-  
-    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_SUCCESS:
-        return {
-          ...state,
-          requestIndividualJiraContribution: false,
-          individualJiraContribution: action.payload,
-      };
-    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_FAILURE:
-        return {
-          ...state,
-          requestIndividualJiraContribution: false,
-          individualJiraContribution: {},
-      };
-// INDIVIDUAL_JIRA_CONTRIBUTION END
-      
-    
     case userConstants.GET_TEAM_CONFLUENCE_PAGES_REQUEST:
       return {
         ...state,
@@ -118,6 +119,25 @@ export function user(state = initState, action) {
         requestTeamConfluencePages: false,
         teamConfluencePages: {},
       };
+    // Team Confluence Update START - Process
+    case userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST:
+      return {
+        ...state,
+        requestTeamConfluenceUpdate: true,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        requestTeamConfluenceUpdate: false,
+        teamConfluenceUpdate: action.payload,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_UPDATE_FAILURE:
+      return {
+        ...state,
+        requestTeamConfluenceUpdate: false,
+        teamConfluenceUpdate: {},
+      };
+    // Team Confluence Update END
     case userConstants.GET_TEAM_GITHUB_COMMITS_REQUEST:
       return {
         ...state,
@@ -168,6 +188,25 @@ export function user(state = initState, action) {
         ...state,
         requestTeamConfluenceMeetins: false,
       };
+    // Team Confluence Comment START - Communication
+    case userConstants.GET_TEAM_CONFLUENCE_COMMENT_REQUEST:
+      return {
+        ...state,
+        requestTeamConfluenceComment: true,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        requestTeamConfluenceComment: false,
+        teamConfluenceComment: action.payload,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_COMMENT_FAILURE:
+      return {
+        ...state,
+        requestTeamConfluenceComment: false,
+        teamConfluenceComment: {},
+      };
+    // Team Confluence Comment END
     case userConstants.GET_TEAM_CODE_METRICS_REQUEST:
       return {
         ...state,
