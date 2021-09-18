@@ -108,7 +108,7 @@ class ProcessQualityPage extends React.Component {
                         </tr>
                         {
                           this.props.githubData["github"].map(function (item) {
-                            return <tr><td>{item["name"]}</td><td>{item["page_count"]}</td><td>{item["version"]}</td></tr>
+                            return <tr><td>{item["name"]}</td><td>{item["commit_count"]}</td><td>{item["version"]}</td></tr>
                           })
                         }
                       </table>

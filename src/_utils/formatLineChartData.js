@@ -26,7 +26,7 @@ export function formatLineChartData(response) {
   let github_pages = [];
   let github_versions = [];
   for (let i = 0; i < result["datasets"].length; i++) {
-    if (result["datasets"][i]["label"].startsWith("page_count")) {
+    if (result["datasets"][i]["label"].startsWith("commit_count")) {
       github_pages = result["datasets"][i]["data"];
     }
     if (result["datasets"][i]["label"].startsWith("version")) {
@@ -34,7 +34,7 @@ export function formatLineChartData(response) {
     }
   }
   for (let i = 0; i < github_labels.length; i++) {
-    result["github"].push({"name": github_labels[i], "page_count": github_pages[i], "version": github_versions[i]})
+    result["github"].push({"name": github_labels[i], "commit_count": github_pages[i], "version": github_versions[i]})
   }
 
   return result;
