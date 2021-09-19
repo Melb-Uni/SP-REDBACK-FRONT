@@ -20,7 +20,7 @@ Branch management is composed of the following parts:
 - <code>sm2-confluence</code> is the branch of new features on Confluence part. It is updated by Yang-Han Chen and Yalan Zhao.
 
 # Deployment
-## 1. To start a front-end for developing:
+## To start a front-end for developing:
 <ol>
       <li>install npm, can refer to https://www.npmjs.com/get-npm</li>
       <ul>
