@@ -193,6 +193,7 @@ class IndividualContributionPage extends React.Component {
                           "undefined" &&
                         JSON.stringify(this.props.individualGithubData) !==
                           "{}" && (
+                            <div>
                           <DonutChart
                             data={JSON.parse(
                               JSON.stringify(
@@ -203,6 +204,20 @@ class IndividualContributionPage extends React.Component {
                             )}
                             dataLabel={"Number of Commits"}
                           />
+                          <br/><br/>
+                            <table border="1">
+                              <tr>
+                                <th width="30%">Name</th>
+                                <th width="35">Commit Count</th>
+                                <th width="35%">Version</th>
+                              </tr>
+                              {
+                                this.props.individualGithubData["All"]["github"].map(function (item) {
+                                  return <tr><td>{item["name"]}</td><td>{item["commit_count"]}</td><td>{item["version"]}</td></tr>
+                                })
+                              }
+                            </table>
+                          </div>
                         )}
                       {this.state.btnSelected === commonConstants.JIRA &&
                         typeof this.props.individualJiraData !== "undefined" &&
@@ -251,6 +266,7 @@ class IndividualContributionPage extends React.Component {
 
 function mapState(state) {
   return {
+    individualGithubData: state.user.individualGitHubCommits,
     individualConfluenceData: state.user.individualConfluencePages,
     // Individual Confluence Contribution
     individualConfluenceContributionData: state.user.individualConfluenceContribution,
@@ -264,6 +280,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
+  getGithubIndividualData: userActions.getGithubIndividualData,
   getConfluenceIndividualData: userActions.getConfluenceIndividualData,
   // Get Individual Confluence Contribution
   getConfluenceIndividualContribution: userActions.getConfluenceIndividualContribution,
