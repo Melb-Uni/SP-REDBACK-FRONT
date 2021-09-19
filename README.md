@@ -82,3 +82,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * Individual Confluence Pages Contribution
 ### 2021.9.16
 * Activate new features in Process Page and Communication Page
+### 2021.9.19
+* Add Git Individual Contribution & Process Quality Feature
