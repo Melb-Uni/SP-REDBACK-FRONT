@@ -80,4 +80,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Version 1: (2021.September.19)
 ### 2021.9.14
 * Individual Confluence Pages Contribution
+### 2021.9.16
 * Activate new features in Process Page and Communication Page
