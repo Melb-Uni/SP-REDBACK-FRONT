@@ -4,6 +4,9 @@ const initState = {
   requestIndividualConfluencePages: false,
   requestIndividualGitHubCommits: false,
   requestIndividualJiraCounts: false,
+  // Request Individual Jira Contribution START
+  requestIndividualJiraContribution:false,
+  // Request Individual Jira Contribution END  
   // Request Individual Confluence Contribution START - Individual Page
   requestIndividualConfluenceContribution: false,
   // Request Individual Confluence Contribution END
@@ -102,6 +105,28 @@ export function user(state = initState, action) {
         requestIndividualJiraCounts: false,
         individualJiraCounts: {},
       };
+      
+    // INDIVIDUAL_JIRA_CONTRIBUTION START
+    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_REQUEST:
+        return {
+          ...state,
+          requestIndividualJiraContribution: true,
+      };
+
+    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_SUCCESS:
+        return {
+          ...state,
+          requestIndividualJiraContribution: false,
+          individualJiraContribution: action.payload,
+      };
+    case userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_FAILURE:
+        return {
+          ...state,
+          requestIndividualJiraContribution: false,
+          individualJiraContribution: {},
+      };
+    // INDIVIDUAL_JIRA_CONTRIBUTION END
+      
     case userConstants.GET_TEAM_CONFLUENCE_PAGES_REQUEST:
       return {
         ...state,
