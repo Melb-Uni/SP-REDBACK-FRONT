@@ -155,7 +155,7 @@ class IndividualContributionPage extends React.Component {
                               <tr>
                                 <th width="30%">Name</th>
                                 <th width="35">Commit Count</th>
-                                <th width="35%">Version</th>
+                                <th width="35%">Description</th>
                               </tr>
                               {
                                 this.props.individualGithubData["All"]["github"].map(function (item) {
