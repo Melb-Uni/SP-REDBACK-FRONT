@@ -19,6 +19,8 @@ export const userActions = {
   getConfluenceIndividualData,
   getGithubIndividualData,
   getJiraIndividualData,
+  // Get Individual Jira Contribution
+  getJiraIndividualContribution,
   getConfluenceSpaceByKeyWord,
   importProject,
   getImportedProject,
@@ -329,6 +331,35 @@ function getJiraIndividualData(teamKey) {
         dispatch(
           failure(
             userConstants.GET_INDIVIDUAL_JIRA_COUNTS_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+
+function getJiraIndividualContribution(teamKey) {
+  return (dispatch) => {
+    userService.getJiraIndividualContribution(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_SUCCESS,
+              response.data
+            )
+          );
+        } else {
+          dispatch(failure(userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_FAILURE));
+          failureToast(response.msg);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_FAILURE,
             error.toString()
           )
         );

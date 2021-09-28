@@ -19,7 +19,7 @@ export function formatLineChartData(response) {
       });
     }
   }
-
+  
   let result = {labels: xaxis, datasets: datasets}
   result["github"] = [];
   let github_labels = result["labels"];

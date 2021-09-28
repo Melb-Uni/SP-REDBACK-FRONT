@@ -3,7 +3,6 @@ import randomColor from "randomcolor";
 export function formatDonutChartData(response) {
   let rawData = response.data;
   let labelDataMap = getlabelDataMap(rawData);
-
   let xaxis = [];
   let datasets = [];
   let result = {};
@@ -26,18 +25,18 @@ export function formatDonutChartData(response) {
     labels: xaxis,
     datasets: datasets,
   };
+  
   let colorForOtherElseStudents = randomColor({
     seed: 2
   });
   let studentList = formattedData.labels.slice();
   studentList.push("All");
-
   for (let i = 0, len=studentList.length; i < len; i++) {
-
+    
     result[studentList[i]] = formatDonutChartDataForOneStudent(formattedData, studentList[i], colorForOtherElseStudents);
-
+    
   }
-
+  
   result["All"]["github"] = []
   let github_labels = result["All"]["labels"];
   let github_commits = [];
@@ -61,7 +60,7 @@ export function formatDonutChartData(response) {
 
 function formatDonutChartDataForOneStudent(formattedData, student, colorForOtherElseStudents) {
     if (student === "All") {
-
+      
       return formattedData;
     }
     let index = 0;
