@@ -10,13 +10,11 @@ import { ToastContainer } from "react-toastify";
 import { Spin } from "antd";
 import { InformationalNote } from "../_utils/Alert";
 import { alertConstants } from "../_constants";
-// Import Table for displaying the team update table
 import Table from "../_utils/Table";
 
 class ProcessQualityPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       btnNames: [
         commonConstants.CONFLUENCE,
@@ -25,8 +23,12 @@ class ProcessQualityPage extends React.Component {
       ],
       btnSelected: commonConstants.CONFLUENCE,
       scrollPosition: 0,
-      // Update columns START
       update_columns: [
+        {
+          name: "Action",
+          selector: "action",
+          maxWidth: "10vw",
+        },
         {
           name: "Time",
           selector: "time",
@@ -41,7 +43,6 @@ class ProcessQualityPage extends React.Component {
           cell: (row) => <a href={row.link}>{row.link}</a>,
         },
       ],
-      // Update columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
     };
@@ -88,6 +89,12 @@ class ProcessQualityPage extends React.Component {
   }
 
   render() {
+    
+    const instruction_style = {
+      color:'grey',
+      marginLeft: '150px'
+    };
+
     return (
       <div className="uomcontent">
         {uomHeader("Process Quality")}
@@ -113,7 +120,10 @@ class ProcessQualityPage extends React.Component {
             >
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.CONFLUENCE && (
-                  <LineChart data={this.props.confluenceData} />
+                  <div>
+                    <p style={instruction_style}> • Hover on the line to get more information </p>
+                    <LineChart data={this.props.confluenceData} />
+                  </div>
                 )}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.CONFLUENCE && (
@@ -126,7 +136,22 @@ class ProcessQualityPage extends React.Component {
               }
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.GITHUB && (
+                  <div>
                   <LineChart data={this.props.githubData} />
+                  <br/><br/>
+                      <table border="1">
+                        <tr>
+                          <th width="30%">Name</th>
+                          <th width="35">Page Count</th>
+                          <th width="35%">Version</th>
+                        </tr>
+                        {
+                          this.props.githubData["github"].map(function (item) {
+                            return <tr><td>{item["name"]}</td><td>{item["commit_count"]}</td><td>{item["version"]}</td></tr>
+                          })
+                        }
+                      </table>
+                    </div>
                 )}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.JIRA && (
