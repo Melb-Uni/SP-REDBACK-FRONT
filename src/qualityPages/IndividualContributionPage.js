@@ -38,6 +38,7 @@ class IndividualContributionPage extends React.Component {
         {
           name: "Student Name",
           selector: "student", // Change to user_name
+          maxWidth: "15vw",
         },
         {
           name: "Page Name",
@@ -184,6 +185,7 @@ class IndividualContributionPage extends React.Component {
                             columns={this.state.contribution_columns}
                             data = {this.props.individualConfluenceContributionData}
                             width={"80vw"}
+                            
                             height={"50vh"}
                           />
                         )
