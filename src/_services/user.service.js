@@ -22,6 +22,8 @@ export const userService = {
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
+  // Get Individual Jira Contribution
+  getJiraIndividualContribution,
   getImportedProject,
   importProject,
   deleteImportedProject,
@@ -245,6 +247,22 @@ function getJiraIndividualData(teamKey) {
       return jsonResponse;
     });
 }
+
+// Get Individual Jira Contribution START
+function getJiraIndividualContribution(teamKey) {
+  let url = baseUrl + "/jira/" + teamKey + "/contributions";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+// Get Individual Jira Contribution END
 
 function getConfluenceIndividualData(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions";
