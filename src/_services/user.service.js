@@ -2,6 +2,12 @@
 export const userService = {
   login,
   getTeamConfluencePages,
+  // Get Team Confluence Pages Week
+  getTeamConfluencePagesWeek,
+  // Get Team Confluence Pages Month
+  getTeamConfluencePagesMonth,
+  // Get Team Confluence Pages Change
+  getTeamConfluencePagesChange,
   // Get Team Confluence Updates
   getTeamConfluenceUpdate,
   getTeamGithubCommits,
@@ -27,6 +33,54 @@ const baseUrl = "/api/v1";
 
 function getTeamConfluencePages(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+// Get Team Confluence Pages Week
+function getTeamConfluencePagesWeek(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_7";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+// Get Team Confluence Pages Month
+function getTeamConfluencePagesMonth(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_30";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+// Get Team Confluence Pages Change
+function getTeamConfluencePagesChange(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_changes";
 
   const requestOptions = {
     method: "GET",

@@ -11,6 +11,12 @@ export const userActions = {
   login,
   logout,
   getTeamConfluencePages,
+  // Get Team Confluence Pages Week
+  getTeamConfluencePagesWeek,
+  // Get Team Confluence Pages Month
+  getTeamConfluencePagesMonth,
+  // Get Team Confluence Pages Change
+  getTeamConfluencePagesChange,
   // Get Team Confluence Updates
   getTeamConfluenceUpdate,
   getTeamGithubCommits,
@@ -82,6 +88,111 @@ function getTeamConfluencePages(teamKey) {
         dispatch(
           failure(
             userConstants.GET_TEAM_CONFLUENCE_PAGES_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+// Get Team Confluence Pages Week
+function getTeamConfluencePagesWeek(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_REQUEST));
+    userService.getTeamConfluencePagesWeek(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_SUCCESS, // Action
+              formatLineChartData(response) // Payload
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+// Get Team Confluence Pages Month
+function getTeamConfluencePagesMonth(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_REQUEST));
+    userService.getTeamConfluencePagesMonth(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_SUCCESS, // Action
+              formatLineChartData(response) // Payload
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+// Get Team Confluence Pages Change
+function getTeamConfluencePagesChange(teamKey) {
+  return (dispatch) => {
+    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_REQUEST));
+    userService.getTeamConfluencePagesChange(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_SUCCESS, // Action
+              formatLineChartData(response) // Payload
+            )
+          );
+        } else {
+          dispatch(
+            failure(
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE,
+              response.message
+            )
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE,
             error.toString()
           )
         );

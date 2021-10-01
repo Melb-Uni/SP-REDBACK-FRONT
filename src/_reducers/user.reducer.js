@@ -8,6 +8,15 @@ const initState = {
   requestIndividualConfluenceContribution: false,
   // Request Individual Confluence Contribution END
   requestTeamConfluencePages: false,
+  // Request Team Confluence Page 7 START - Process Page
+  requestTeamConfluencePagesWeek: false,
+  // Request Team Confluence Page 7 END
+  // Request Team Confluence Page 30 START - Process Page
+  requestTeamConfluencePagesMonth: false,
+  // Request Team Confluence Page 30 END
+  // Request Team Confluence Page count START - Process Page
+  requestTeamConfluencePagesChange: false,
+  // Request Team Confluence Page count END
   requestTeamGithubCommits: false,
   requestTeamJiraTickets: false,
   // Request Team Confluence Update START - Process Page
@@ -119,6 +128,67 @@ export function user(state = initState, action) {
         requestTeamConfluencePages: false,
         teamConfluencePages: {},
       };
+
+    // Team Confluence Page Week START
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_REQUEST:
+      return {
+        ...state,
+        requestTeamConfluencePagesWeek: true,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_SUCCESS:
+      return {
+        ...state,
+        requestTeamConfluencePagesWeek: false,
+        teamConfluencePagesWeek: action.payload,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_FAILURE:
+      return {
+        ...state,
+        requestTeamConfluencePagesWeek: false,
+        teamConfluencePagesWeek: {},
+      };
+    // Team Confluence Page Week END
+    
+    // Team Confluence Page Month START
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_REQUEST:
+      return {
+        ...state,
+        requestTeamConfluencePagesMonth: true,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_SUCCESS:
+      return {
+        ...state,
+        requestTeamConfluencePagesMonth: false,
+        teamConfluencePagesMonth: action.payload,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_FAILURE:
+      return {
+        ...state,
+        requestTeamConfluencePagesMonth: false,
+        teamConfluencePagesMonth: {},
+      };
+    // Team Confluence Page Month END
+
+    // Team Confluence Page Change START
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_REQUEST:
+      return {
+        ...state,
+        requestTeamConfluencePagesChange: true,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_SUCCESS:
+      return {
+        ...state,
+        requestTeamConfluencePagesWeek: false,
+        teamConfluencePagesChange: action.payload,
+      };
+    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE:
+      return {
+        ...state,
+        requestTeamConfluencePagesCHANGE: false,
+        teamConfluencePagesChange: {},
+      };
+    // Team Confluence Page Change END
+
     // Team Confluence Update START - Process
     case userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST:
       return {

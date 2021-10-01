@@ -18,6 +18,9 @@ class ProcessQualityPage extends React.Component {
     this.state = {
       btnNames: [
         commonConstants.CONFLUENCE,
+        commonConstants.CONFLUENCE_WEEK,
+        commonConstants.CONFLUENCE_MONTH,
+        commonConstants.CONFLUENCE_CHANGE,
         commonConstants.GITHUB,
         commonConstants.JIRA,
       ],
@@ -53,10 +56,17 @@ class ProcessQualityPage extends React.Component {
 
   handleBtnGroupClick(e) {
     let selected = e.currentTarget.firstChild.innerHTML;
+
     if (selected == commonConstants.CONFLUENCE) {
       this.props.getTeamConfluencePages(this.props.currentTeamKey);
       this.props.getTeamConfluenceUpdate(this.props.currentTeamKey);
-    } else if (selected == commonConstants.GITHUB) {
+    }else if (selected == commonConstants.CONFLUENCE_WEEK) {
+      this.props.getTeamConfluencePagesWeek(this.props.currentTeamKey);
+    }else if (selected == commonConstants.CONFLUENCE_MONTH) {
+      this.props.getTeamConfluencePagesMonth(this.props.currentTeamKey);
+    }else if (selected == commonConstants.CONFLUENCE_CHANGE){
+      this.props.getTeamConfluencePagesChange(this.props.currentTeamKey);
+    }else if (selected == commonConstants.GITHUB) {
       this.props.getTeamGithubCommits(this.props.currentTeamKey);
     } else {
       this.props.getTeamJiraTickets(this.props.currentTeamKey);
@@ -114,6 +124,9 @@ class ProcessQualityPage extends React.Component {
             <Spin
               spinning={
                 this.props.requestTeamConfluencePages ||
+                this.props.requestTeamConfluencePagesWeek ||
+                this.props.requestTeamConfluencePagesMonth ||
+                this.props.requestTeamConfluencePagesChange ||
                 this.props.requestTeamGithubCommits ||
                 this.props.requestTeamJiraTickets
               }
@@ -134,6 +147,27 @@ class ProcessQualityPage extends React.Component {
                     height={"50vh"}
                   />)
               }
+              {this.state.hasConfig &&
+                this.state.btnSelected == commonConstants.CONFLUENCE_WEEK && (
+                  <div>
+                    <p style={instruction_style}> • Hover on the line to get more information </p>
+                    <LineChart data={this.props.confluenceDataWeek} />
+                  </div>
+              )}
+              {this.state.hasConfig &&
+                this.state.btnSelected == commonConstants.CONFLUENCE_MONTH && (
+                  <div>
+                    <p style={instruction_style}> • Hover on the line to get more information </p>
+                    <LineChart data={this.props.confluenceDataMonth} />
+                  </div>
+              )}
+              {this.state.hasConfig &&
+                this.state.btnSelected == commonConstants.CONFLUENCE_CHANGE && (
+                  <div>
+                    <p style={instruction_style}> • Hover on the line to get more information </p>
+                    <LineChart data={this.props.confluenceDataChange} />
+                  </div>
+              )}
               {this.state.hasConfig &&
                 this.state.btnSelected == commonConstants.GITHUB && (
                   <div>
@@ -169,9 +203,15 @@ class ProcessQualityPage extends React.Component {
 function mapState(state) {
   return {
     requestTeamConfluencePages: state.user.requestTeamConfluencePages,
+    requestTeamConfluencePagesWeek: state.user.requestTeamConfluencePagesWeek,
+    requestTeamConfluencePagesMonth: state.user.requestTeamConfluencePagesMonth,
+    requestTeamConfluencePagesChange: state.user.requestTeamConfluencePagesChange,
     requestTeamGithubCommits: state.user.requestTeamGithubCommits,
     requestTeamJiraTickets: state.user.requestTeamJiraTickets,
     confluenceData: state.user.teamConfluencePages,
+    confluenceDataWeek: state.user.teamConfluencePagesWeek,
+    confluenceDataMonth: state.user.teamConfluencePagesMonth,
+    confluenceDataChange: state.user.teamConfluencePagesChange,
     confluenceUpdateData: state.user.teamConfluenceUpdate,
     githubData: state.user.teamGithubCommits,
     jiraData: state.user.teamJiraTickets,
@@ -183,6 +223,9 @@ function mapState(state) {
 
 const actionCreators = {
   getTeamConfluencePages: userActions.getTeamConfluencePages,
+  getTeamConfluencePagesWeek: userActions.getTeamConfluencePagesWeek,
+  getTeamConfluencePagesMonth: userActions.getTeamConfluencePagesMonth,
+  getTeamConfluencePagesChange: userActions.getTeamConfluencePagesChange,
   getTeamConfluenceUpdate: userActions.getTeamConfluenceUpdate,
   getTeamGithubCommits: userActions.getTeamGithubCommits,
   getTeamJiraTickets: userActions.getTeamJiraTickets,
