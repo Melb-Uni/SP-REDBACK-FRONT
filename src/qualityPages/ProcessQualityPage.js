@@ -143,7 +143,7 @@ class ProcessQualityPage extends React.Component {
                         <tr>
                           <th width="30%">Name</th>
                           <th width="35">Page Count</th>
-                          <th width="35%">Version</th>
+                          <th width="35%">Description</th>
                         </tr>
                         {
                           this.props.githubData["github"].map(function (item) {
