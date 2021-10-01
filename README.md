@@ -87,3 +87,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### 2021.9.19
 * Add Git Individual Contribution & Process Quality Feature
 * Release comp90082_s2_sp_v1.0
+### 2021.10.1
+* Modify tables in Individual and Process Page
