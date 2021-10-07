@@ -34,7 +34,7 @@ export const userService = {
 const baseUrl = "/api/v1";
 
 function getTeamConfluencePages(teamKey) {
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count";
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_all";
 
   const requestOptions = {
     method: "GET",
