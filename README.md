@@ -89,3 +89,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * Release comp90082_s2_sp_v1.0
 ### 2021.10.1
 * Modify tables in Individual and Process Page
+### 2021.10.7
+* Modify tables in Process Page
