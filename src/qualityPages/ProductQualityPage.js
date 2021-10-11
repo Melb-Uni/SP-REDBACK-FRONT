@@ -7,6 +7,9 @@ import { userActions } from "../_actions";
 import { InformationalNote } from "../_utils/Alert";
 import { alertConstants } from "../_constants";
 import ReverseTable from "../_utils/ReverseTable";
+import DropdownMenus from "../_utils/DropdownMenus";
+import DropdownMenusQuality from "../_utils/DropdownMenusQuality";
+import ReverseTableQuality from "../_utils/ReverseTableQuality";
 
 class ProductQualityPage extends React.Component {
   constructor(props) {
@@ -38,7 +41,15 @@ class ProductQualityPage extends React.Component {
       ],
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
+      selectedRelease: this.props.teamCodeMetrics[0]["release"],
     };
+
+    this.selectRelease = this.selectRelease.bind(this);
+  }
+
+  selectRelease(e) {
+    this.setState({ selectedRelease: e.target.value });
+    console.log(e.target.value);
   }
 
   componentDidMount() {
@@ -117,9 +128,24 @@ class ProductQualityPage extends React.Component {
             {this.state.hasConfig &&
               this.props.teamCodeMetrics &&
               this.props.teamCodeMetrics.length != 0 && (
-              <ReverseTable
-              data={this.props.teamCodeMetrics}
-            />
+
+
+
+                  <div>
+                    <DropdownMenusQuality
+                        data={this.props.teamCodeMetrics}
+                        onChange={this.selectRelease}
+                        value={this.state.selectedRelease}
+                    />
+                    <ReverseTableQuality
+                        data={this.props.teamCodeMetrics}
+                        release={this.state.selectedRelease}
+                    />
+                  </div>
+
+
+
+
             )}
             {this.state.hasConfig &&
               (!this.props.teamCodeMetrics ||
