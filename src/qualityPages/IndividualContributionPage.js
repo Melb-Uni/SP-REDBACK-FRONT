@@ -65,11 +65,13 @@ class IndividualContributionPage extends React.Component {
   handleBtnGroupClick(e) {
     let picked = e.currentTarget.firstChild.innerHTML;
     if (picked === commonConstants.CONFLUENCE) {
-      this.props.getConfluenceIndividualData(this.props.currentTeamKey);
+      this.props.getIndividualContribution(this.props.currentTeamKey);
       this.props.getConfluenceIndividualContribution(this.props.currentTeamKey);
     } else if (picked === commonConstants.GITHUB) {
+      this.props.getIndividualContribution(this.props.currentTeamKey);
       this.props.getGithubIndividualData(this.props.currentTeamKey);
     } else {
+      this.props.getIndividualContribution(this.props.currentTeamKey);
       this.props.getJiraIndividualData(this.props.currentTeamKey);
       this.props.getJiraIndividualContribution(this.props.currentTeamKey);
     }
@@ -85,7 +87,7 @@ class IndividualContributionPage extends React.Component {
 
   componentDidMount() {
     if (this.state.hasConfig) {
-      this.props.getConfluenceIndividualData(this.props.currentTeamKey);
+      this.props.getIndividualContribution(this.props.currentTeamKey);
       this.props.getConfluenceIndividualContribution(this.props.currentTeamKey);
     }
   }
@@ -114,13 +116,13 @@ class IndividualContributionPage extends React.Component {
                     </Col>
                     <Col>
                       {this.state.btnSelected === commonConstants.CONFLUENCE &&
-                        typeof this.props.individualConfluenceData !==
+                        typeof this.props.individualContribution !==
                           "undefined" &&
-                        JSON.stringify(this.props.individualConfluenceData) !==
+                        JSON.stringify(this.props.individualContribution) !==
                           "{}" && (
                           <DropdownMenus
                             data={
-                              this.props.individualConfluenceData["All"].labels
+                              this.props.individualContribution["All"].labels
                             }
                             onChange={this.selectStudent}
                             value={this.state.selectedStudent}
@@ -150,19 +152,18 @@ class IndividualContributionPage extends React.Component {
                     </Col>
                     <Col>
                       {this.state.btnSelected === commonConstants.CONFLUENCE &&
-                        typeof this.props.individualConfluenceData !==
+                        typeof this.props.individualContribution !==
                           "undefined" &&
-                        JSON.stringify(this.props.individualConfluenceData) !==
+                        JSON.stringify(this.props.individualContribution) !==
                           "{}" && (
                           <DonutChart
                             data={JSON.parse(
                               JSON.stringify(
-                                this.props.individualConfluenceData[
+                                this.props.individualContribution[
                                   this.state.selectedStudent
                                 ]
                               )
                             )}
-                            dataLabel={"Edited Pages"}
                           />
                         )}
                       {this.state.btnSelected === commonConstants.CONFLUENCE && 
@@ -178,7 +179,22 @@ class IndividualContributionPage extends React.Component {
                             height={"50vh"}
                           />
                         )
-                      }  
+                      }
+                      {this.state.btnSelected === commonConstants.GITHUB &&
+                        typeof this.props.individualGithubData !==
+                          "undefined" &&
+                        JSON.stringify(this.props.individualContribution) !==
+                          "{}" && (
+                          <DonutChart
+                            data={JSON.parse(
+                              JSON.stringify(
+                                this.props.individualContribution[
+                                  this.state.selectedStudent
+                                ]
+                              )
+                            )}
+                          />
+                        )}  
                       {this.state.btnSelected === commonConstants.GITHUB &&
                         typeof this.props.individualGithubData !==
                           "undefined" &&
@@ -210,6 +226,21 @@ class IndividualContributionPage extends React.Component {
                             </table>
                           </div>
                         )}
+                        {this.state.btnSelected === commonConstants.JIRA &&
+                        typeof this.props.individualContribution !==
+                          "undefined" &&
+                        JSON.stringify(this.props.individualContribution) !==
+                          "{}" && (
+                          <DonutChart
+                            data={JSON.parse(
+                              JSON.stringify(
+                                this.props.individualContribution[
+                                  this.state.selectedStudent
+                                ]
+                              )
+                            )}
+                          />
+                        )} 
                       {this.state.btnSelected === commonConstants.JIRA &&
                         typeof this.props.individualJiraData !== "undefined" &&
                         JSON.stringify(this.props.individualJiraData) !==
@@ -258,7 +289,7 @@ class IndividualContributionPage extends React.Component {
 function mapState(state) {
   return {
     individualGithubData: state.user.individualGitHubCommits,
-    individualConfluenceData: state.user.individualConfluencePages,
+    individualContribution: state.user.individualContribution,
     individualConfluenceContributionData: state.user.individualConfluenceContribution,
     individualGithubData: state.user.individualGitHubCommits,
     individualJiraData: state.user.individualJiraCounts,
@@ -271,7 +302,7 @@ function mapState(state) {
 
 const actionCreators = {
   getGithubIndividualData: userActions.getGithubIndividualData,
-  getConfluenceIndividualData: userActions.getConfluenceIndividualData,
+  getIndividualContribution: userActions.getIndividualContribution,
   getConfluenceIndividualContribution: userActions.getConfluenceIndividualContribution,
   getGithubIndividualData: userActions.getGithubIndividualData,
   getJiraIndividualData: userActions.getJiraIndividualData,

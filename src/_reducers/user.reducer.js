@@ -2,6 +2,7 @@ import { userConstants } from "../_constants";
 
 const initState = {
   requestIndividualConfluencePages: false,
+  requestIndividualContribution: false,
   requestIndividualGitHubCommits: false,
   requestIndividualJiraCounts: false,
   // Request Individual Jira Contribution START
@@ -29,22 +30,22 @@ const initState = {
 
 export function user(state = initState, action) {
   switch (action.type) {
-    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_REQUEST:
+    case userConstants.GET_INDIVIDUAL_CONTRIBUTION_REQUEST:
       return {
         ...state,
-        requestIndividualConfluencePages: true,
+        requestIndividualContribution: true,
       };
-    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_SUCCESS:
+    case userConstants.GET_INDIVIDUAL_CONTRIBUTION_SUCCESS:
       return {
         ...state,
-        requestIndividualConfluencePages: false,
-        individualConfluencePages: action.payload,
+        requestIndividualContribution: false,
+        individualContribution: action.payload,
       };
-    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE:
+    case userConstants.GET_INDIVIDUAL_CONTRIBUTION_FAILURE:
       return {
         ...state,
-        requestIndividualConfluencePages: false,
-        individualConfluencePages: {},
+        requestIndividualContribution: false,
+        individualContribution: {},
       };
     case userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST:
       return {

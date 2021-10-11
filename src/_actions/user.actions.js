@@ -20,7 +20,7 @@ export const userActions = {
   getTeamConfluenceComment,
   getTeamCodeMetrics,
   setTeamInfo,
-  getConfluenceIndividualData,
+  getIndividualContribution,
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -393,20 +393,20 @@ function getTeamCodeMetrics(teamKey) {
   };
 }
 
-function getConfluenceIndividualData(teamKey) {
+function getIndividualContribution(teamKey) {
   return (dispatch) => {
-    userService.getConfluenceIndividualData(teamKey).then(
+    userService.getIndividualContribution(teamKey).then(
       (response) => {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_SUCCESS,
+              userConstants.GET_INDIVIDUAL_CONTRIBUTION_SUCCESS,
               formatDonutChartData(response)
             )
           );
         } else {
           dispatch(
-            failure(userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE)
+            failure(userConstants.GET_INDIVIDUAL_CONTRIBUTION_FAILURE)
           );
           failureToast(response.message);
         }
@@ -414,7 +414,7 @@ function getConfluenceIndividualData(teamKey) {
       (error) => {
         dispatch(
           failure(
-            userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE,
+            userConstants.GET_INDIVIDUAL_CONTRIBUTION_FAILURE,
             error.toString()
           )
         );

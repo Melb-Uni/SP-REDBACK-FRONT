@@ -23,7 +23,8 @@ import { Doughnut } from 'react-chartjs-2'
 
 export default function DonutChart(props){
   const data = props.data
-  const label = props.dataLabel ? props.dataLabel: data.datasets[0].label;
+  var label = ""
+  console.log(data)
   return (
       <div style={{ position: "relative", margin: "auto", width: "80vw" }}>
         <Doughnut data={data} options={{legend: { display: true, position: "right", labels: {fontSize: 12} },
@@ -40,7 +41,14 @@ export default function DonutChart(props){
             var currentValue = dataset.data[tooltipItem.index];
             //calculate the precentage based on the total and current item, also this does a rough rounding to give a whole number
             var percentage = Math.floor(((currentValue/total) * 100)+0.5);
-
+            if(dataset.label == "confluence_page_count"){
+              label = "Confluence Contribution";
+            }else{
+              label = "Jira Contribution";
+            }      
+            if(data.datasets.length == 1){
+              label = " ";
+            }
             return  data.labels[tooltipItem.index] + "'s " + label + ": " +currentValue + "(" + percentage + "%" + ")";
     }
   }
