@@ -11,23 +11,16 @@ export const userActions = {
   login,
   logout,
   getTeamConfluencePages,
-  // Get Team Confluence Pages Week
   getTeamConfluencePagesWeek,
-  // Get Team Confluence Pages Month
   getTeamConfluencePagesMonth,
-  // Get Team Confluence Pages Change
-  getTeamConfluencePagesChange,
-  // Get Team Confluence Updates
   getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
-  // Get Team Confluence Comments
   getTeamConfluenceComment,
   getTeamCodeMetrics,
   setTeamInfo,
   getConfluenceIndividualData,
-  // Get Individual Confluence Contribution
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -72,8 +65,8 @@ function getTeamConfluencePages(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_SUCCESS, // Action
-              formatLineChartData(response) // Payload
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_SUCCESS,
+              formatLineChartData(response)
             )
           );
         } else {
@@ -98,7 +91,6 @@ function getTeamConfluencePages(teamKey) {
     );
   };
 }
-// Get Team Confluence Pages Week
 function getTeamConfluencePagesWeek(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_REQUEST));
@@ -107,8 +99,8 @@ function getTeamConfluencePagesWeek(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_SUCCESS, // Action
-              formatLineChartData(response) // Payload
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_SUCCESS,
+              formatLineChartData(response)
             )
           );
         } else {
@@ -133,7 +125,7 @@ function getTeamConfluencePagesWeek(teamKey) {
     );
   };
 }
-// Get Team Confluence Pages Month
+
 function getTeamConfluencePagesMonth(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_REQUEST));
@@ -142,8 +134,8 @@ function getTeamConfluencePagesMonth(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_SUCCESS, // Action
-              formatLineChartData(response) // Payload
+              userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_SUCCESS,
+              formatLineChartData(response)
             )
           );
         } else {
@@ -168,42 +160,7 @@ function getTeamConfluencePagesMonth(teamKey) {
     );
   };
 }
-// Get Team Confluence Pages Change
-function getTeamConfluencePagesChange(teamKey) {
-  return (dispatch) => {
-    dispatch(request(userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_REQUEST));
-    userService.getTeamConfluencePagesChange(teamKey).then(
-      (response) => {
-        if (checkRespCode(response)) {
-          dispatch(
-            success(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_SUCCESS, // Action
-              formatLineChartData(response) // Payload
-            )
-          );
-        } else {
-          dispatch(
-            failure(
-              userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE,
-              response.message
-            )
-          );
-          failureToast(response.message);
-        }
-      },
-      (error) => {
-        dispatch(
-          failure(
-            userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE,
-            error.toString()
-          )
-        );
-        failureToast(error.toString());
-      }
-    );
-  };
-}
-// Get Team Confluence Updates
+
 function getTeamConfluenceUpdate(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST));
@@ -467,7 +424,6 @@ function getConfluenceIndividualData(teamKey) {
   };
 }
 
-// Get Individual Confluence Contribution
 function getConfluenceIndividualContribution(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST));
@@ -476,8 +432,8 @@ function getConfluenceIndividualContribution(teamKey) {
         if (checkRespCode(response)) {
           dispatch(
             success(
-              userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_SUCCESS, // Action
-              response.data // Payload <-- NEED UPDATE
+              userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_SUCCESS,
+              response.data
             )
           );
         } else {

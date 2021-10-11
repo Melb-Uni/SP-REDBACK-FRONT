@@ -2,23 +2,16 @@
 export const userService = {
   login,
   getTeamConfluencePages,
-  // Get Team Confluence Pages Week
   getTeamConfluencePagesWeek,
-  // Get Team Confluence Pages Month
   getTeamConfluencePagesMonth,
-  // Get Team Confluence Pages Change
-  getTeamConfluencePagesChange,
-  // Get Team Confluence Updates
   getTeamConfluenceUpdate,
   getTeamGithubCommits,
   getTeamJiraTickets,
   getTeamConfluenceMeeting,
-  // Get Confluence Comments
   getTeamConfluenceComment,
   setTeamInfo,
   getTeamCodeMetrics,
   getConfluenceIndividualData,
-  // Get Individual Confluence Contribution
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -48,7 +41,6 @@ function getTeamConfluencePages(teamKey) {
     });
 }
 
-// Get Team Confluence Pages Week
 function getTeamConfluencePagesWeek(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_7";
 
@@ -64,7 +56,6 @@ function getTeamConfluencePagesWeek(teamKey) {
     });
 }
 
-// Get Team Confluence Pages Month
 function getTeamConfluencePagesMonth(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_30";
 
@@ -80,23 +71,6 @@ function getTeamConfluencePagesMonth(teamKey) {
     });
 }
 
-// Get Team Confluence Pages Change
-function getTeamConfluencePagesChange(teamKey) {
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/page_count_changes";
-
-  const requestOptions = {
-    method: "GET",
-    credentials: "include",
-  };
-
-  return fetch(url, requestOptions)
-    .then((response) => response.json())
-    .then((jsonResponse) => {
-      return jsonResponse;
-    });
-}
-
-// Get Team Confluence Update
 function getTeamConfluenceUpdate(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/updated_files";
 
@@ -156,7 +130,6 @@ function getTeamConfluenceMeeting(teamKey) {
     });
 }
 
-// Get Team Confluence Comment
 function getTeamConfluenceComment(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/comments";
 
@@ -279,7 +252,6 @@ function getConfluenceIndividualData(teamKey) {
     });
 }
 
-// Get Individual Confluence Contribution
 function getConfluenceIndividualContribution(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions_new";
 

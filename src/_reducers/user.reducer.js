@@ -7,27 +7,14 @@ const initState = {
   // Request Individual Jira Contribution START
   requestIndividualJiraContribution:false,
   // Request Individual Jira Contribution END  
-  // Request Individual Confluence Contribution START - Individual Page
   requestIndividualConfluenceContribution: false,
-  // Request Individual Confluence Contribution END
   requestTeamConfluencePages: false,
-  // Request Team Confluence Page 7 START - Process Page
   requestTeamConfluencePagesWeek: false,
-  // Request Team Confluence Page 7 END
-  // Request Team Confluence Page 30 START - Process Page
   requestTeamConfluencePagesMonth: false,
-  // Request Team Confluence Page 30 END
-  // Request Team Confluence Page count START - Process Page
-  requestTeamConfluencePagesChange: false,
-  // Request Team Confluence Page count END
   requestTeamGithubCommits: false,
   requestTeamJiraTickets: false,
-  // Request Team Confluence Update START - Process Page
   requestTeamConfluenceUpdate: false,
-  // Request Team Confluence Update END
-  // Request Team Confluence Comment START - Communication Page
   requestTeamConfluenceComment: false,
-  // Request Team Confluence Comment END
   requestSetTeamInfo: false,
   requestTeamCodeMetrics: false,
   requestConfluenceSpaceByKeyWord: false,
@@ -59,7 +46,6 @@ export function user(state = initState, action) {
         requestIndividualConfluencePages: false,
         individualConfluencePages: {},
       };
-    // Individual Confluence Contribution START - Individual
     case userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST:
       return {
         ...state,
@@ -77,7 +63,6 @@ export function user(state = initState, action) {
         requestIndividualConfluenceContribution: false,
         individualConfluenceContribution: {},
       };
-    // Individual Confluence Contribution END
     case userConstants.GET_INDIVIDUAL_GITHUB_COMMITS_REQUEST:
       return {
         ...state,
@@ -153,8 +138,6 @@ export function user(state = initState, action) {
         requestTeamConfluencePages: false,
         teamConfluencePages: {},
       };
-
-    // Team Confluence Page Week START
     case userConstants.GET_TEAM_CONFLUENCE_PAGES_WEEK_REQUEST:
       return {
         ...state,
@@ -172,9 +155,6 @@ export function user(state = initState, action) {
         requestTeamConfluencePagesWeek: false,
         teamConfluencePagesWeek: {},
       };
-    // Team Confluence Page Week END
-    
-    // Team Confluence Page Month START
     case userConstants.GET_TEAM_CONFLUENCE_PAGES_MONTH_REQUEST:
       return {
         ...state,
@@ -192,29 +172,6 @@ export function user(state = initState, action) {
         requestTeamConfluencePagesMonth: false,
         teamConfluencePagesMonth: {},
       };
-    // Team Confluence Page Month END
-
-    // Team Confluence Page Change START
-    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_REQUEST:
-      return {
-        ...state,
-        requestTeamConfluencePagesChange: true,
-      };
-    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_SUCCESS:
-      return {
-        ...state,
-        requestTeamConfluencePagesWeek: false,
-        teamConfluencePagesChange: action.payload,
-      };
-    case userConstants.GET_TEAM_CONFLUENCE_PAGES_CHANGE_FAILURE:
-      return {
-        ...state,
-        requestTeamConfluencePagesCHANGE: false,
-        teamConfluencePagesChange: {},
-      };
-    // Team Confluence Page Change END
-
-    // Team Confluence Update START - Process
     case userConstants.GET_TEAM_CONFLUENCE_UPDATE_REQUEST:
       return {
         ...state,
@@ -232,7 +189,6 @@ export function user(state = initState, action) {
         requestTeamConfluenceUpdate: false,
         teamConfluenceUpdate: {},
       };
-    // Team Confluence Update END
     case userConstants.GET_TEAM_GITHUB_COMMITS_REQUEST:
       return {
         ...state,
@@ -283,7 +239,6 @@ export function user(state = initState, action) {
         ...state,
         requestTeamConfluenceMeetins: false,
       };
-    // Team Confluence Comment START - Communication
     case userConstants.GET_TEAM_CONFLUENCE_COMMENT_REQUEST:
       return {
         ...state,
@@ -301,7 +256,6 @@ export function user(state = initState, action) {
         requestTeamConfluenceComment: false,
         teamConfluenceComment: {},
       };
-    // Team Confluence Comment END
     case userConstants.GET_TEAM_CODE_METRICS_REQUEST:
       return {
         ...state,

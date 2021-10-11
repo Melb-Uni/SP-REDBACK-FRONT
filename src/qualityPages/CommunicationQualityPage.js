@@ -16,14 +16,12 @@ class CommunicationPage extends React.Component {
           name: "Meeting Name",
           selector: "title",
         },
-
         {
           name: "Meeting Minutes",
           selector: "link",
           cell: (row) => <a href={row.link}>{row.link}</a>,
         },
       ],
-      // Comment columns START
       comment_columns: [
         {
           name: "Time",
@@ -42,7 +40,6 @@ class CommunicationPage extends React.Component {
           selector: "creator",
         },
       ],
-      // Comment columns END
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
     };
@@ -60,7 +57,6 @@ class CommunicationPage extends React.Component {
     return (
       <div className="uomcontent">
         {uomHeader("Communication")}
-
         <div role="main">
           <div className="page-inner">
             <Banner projName={this.props.currentTeamName} />
@@ -101,8 +97,6 @@ class CommunicationPage extends React.Component {
   }
 }
 
-// Each field in the object will become a prop for your actual component
-// Ex: confluenceData will be the prop's key, state.user.teamConfluenceMeeting will be the prop's value
 function mapState(state) {
   return {
     confluenceData: state.user.teamConfluenceMeeting,
