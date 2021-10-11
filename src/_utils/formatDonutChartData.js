@@ -60,25 +60,27 @@ export function formatDonutChartData(response) {
 
 function formatDonutChartDataForOneStudent(formattedData, student, colorForOtherElseStudents) {
     if (student === "All") {
-      
       return formattedData;
     }
+   
     let index = 0;
-    let excludedSum = 0;
+
     for (let i = 0, len = formattedData.labels.length; i < len; i++) {
       if (formattedData.labels[i] === student) {
         index = i;
-      } else {
-        excludedSum += formattedData.datasets[0].data[i];
+        break;
       }
     }
 
+    let confluence = formattedData.datasets[0].data[index];
+    let jira = formattedData.datasets[1].data[index];
+
     let result = {
-      labels: [student, "Other students"],
+      labels: ["Confluence", "Jira"],
       datasets: [{
         label: formattedData.datasets[0].label,
-        data: [formattedData.datasets[0].data[index], excludedSum],
-        backgroundColor: [formattedData.datasets[0].backgroundColor[index], colorForOtherElseStudents]
+        data: [confluence, jira],
+        backgroundColor: [formattedData.datasets[0].backgroundColor[index], formattedData.datasets[1].backgroundColor[index]]
       }]
     };
 

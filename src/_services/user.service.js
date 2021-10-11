@@ -11,7 +11,7 @@ export const userService = {
   getTeamConfluenceComment,
   setTeamInfo,
   getTeamCodeMetrics,
-  getConfluenceIndividualData,
+  getIndividualContribution,
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -237,8 +237,8 @@ function getJiraIndividualContribution(teamKey) {
 }
 // Get Individual Jira Contribution END
 
-function getConfluenceIndividualData(teamKey) {
-  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions";
+function getIndividualContribution(teamKey) {
+  let url = baseUrl + "/coordinator/"+teamKey+"/individual_contributions";
 
   const requestOptions = {
     method: "GET",
@@ -254,7 +254,7 @@ function getConfluenceIndividualData(teamKey) {
 
 function getConfluenceIndividualContribution(teamKey) {
   let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions_new";
-
+  
   const requestOptions = {
     method: "GET",
     credentials: "include",
