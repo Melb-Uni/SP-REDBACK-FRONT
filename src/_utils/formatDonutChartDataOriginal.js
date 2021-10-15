@@ -2,7 +2,7 @@ import randomColor from "randomcolor";
 
 export function formatDonutChartDataOriginal(response) {
   let rawData = response.data;
-  let labelDataMap = getlabelDataMap(rawData);
+  let labelDataMap = getlabelDataMapOriginal(rawData);
   let xaxis = [];
   let datasets = [];
   let result = {};
@@ -33,7 +33,7 @@ export function formatDonutChartDataOriginal(response) {
   studentList.push("All");
   for (let i = 0, len=studentList.length; i < len; i++) {
     
-    result[studentList[i]] = formatDonutChartDataForOneStudent(formattedData, studentList[i], colorForOtherElseStudents);
+    result[studentList[i]] = formatDonutChartDataForOneStudentOriginal(formattedData, studentList[i], colorForOtherElseStudents);
     
   }
   
