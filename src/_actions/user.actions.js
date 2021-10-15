@@ -3,6 +3,7 @@ import { userService } from "../_services";
 import { history } from "../_helpers";
 import { formatLineChartData } from "../_utils/formatLineChartData.js";
 import { formatDonutChartData } from "../_utils/formatDonutChartData.js";
+import { formatDonutChartDataOriginal } from "../_utils/formatDonutChartDataOriginal.js";
 import { unixToDate } from "../_utils/unixToDate.js";
 import { failureToast } from "../_utils/toast";
 import { successToast } from "../_utils/toast";
@@ -498,7 +499,7 @@ function getJiraIndividualData(teamKey) {
           dispatch(
             success(
               userConstants.GET_INDIVIDUAL_JIRA_COUNTS_SUCCESS,
-              formatDonutChartData(response)
+              formatDonutChartDataOriginal(response)
             )
           );
         } else {
