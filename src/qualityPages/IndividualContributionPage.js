@@ -134,21 +134,27 @@ class IndividualContributionPage extends React.Component {
                           "undefined" &&
                         JSON.stringify(this.props.individualGithubData) !==
                           "{}" && (
-                          <DropdownMenus
-                            data={this.props.individualGithubData["All"].labels}
-                            onChange={this.selectStudent}
-                            value={this.state.selectedStudent}
-                          />
+                            <div>
+                              <h1 style={title_style}>• Contribution Within the Team</h1>
+                              <DropdownMenus
+                                data={this.props.individualGithubData["All"].labels}
+                                onChange={this.selectStudent}
+                                value={this.state.selectedStudent}
+                              />
+                            </div>
                         )}
                       {this.state.btnSelected === commonConstants.JIRA &&
                         typeof this.props.individualJiraData !== "undefined" &&
                         JSON.stringify(this.props.individualJiraData) !==
                           "{}" && (
-                          <DropdownMenus
-                            data={this.props.individualJiraData["All"].labels}
-                            onChange={this.selectStudent}
-                            value={this.state.selectedStudent}
-                          />
+                            <div>
+                              <h1 style={title_style}>• Contribution Within the Team</h1>
+                              <DropdownMenus
+                                data={this.props.individualJiraData["All"].labels}
+                                onChange={this.selectStudent}
+                                value={this.state.selectedStudent}
+                              />
+                            </div>
                         )}
                     </Col>
                     <Col>
@@ -249,6 +255,7 @@ class IndividualContributionPage extends React.Component {
                             dataLabel={"Number of Commits"}
                           />
                           <br/><br/>
+                            <h1 style={title_style}>• Contribution of Each Student</h1>
                             <table border="1">
                               <tr>
                                 <th width="30%">Name</th>
@@ -299,17 +306,21 @@ class IndividualContributionPage extends React.Component {
                         typeof this.props.individualJiraContribution !== "undefined" &&
                         JSON.stringify(this.props.individualJiraContribution) !==
                           "{}" && (
-                          <Table
-                            title="Individual Contribution Details - Jira"
-                            columns={this.state.jira_contribution_columns}
-                            data ={
-                              this.props.individualJiraContribution
+                            <div>
+                              <br/><br/>
+                              <h1 style={title_style}>• Contribution of Each Student</h1>
+                              <Table
+                                title="Individual Contribution Details - Jira"
+                                columns={this.state.jira_contribution_columns}
+                                data ={
+                                  this.props.individualJiraContribution
 
-                              //JSON.parse(this.props.individualJiraContribution).filter(({student})=>student ===this.state.selectedStudent)
-                            }
-                            max-width={"50vw"}
-                            height={"50vh"}
-                          />
+                                  //JSON.parse(this.props.individualJiraContribution).filter(({student})=>student ===this.state.selectedStudent)
+                                }
+                                max-width={"50vw"}
+                                height={"50vh"}
+                              />
+                            </div>
                         )}
                     </Col>
                   </Row>
