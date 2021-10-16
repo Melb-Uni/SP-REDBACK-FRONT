@@ -30,6 +30,23 @@ const initState = {
 
 export function user(state = initState, action) {
   switch (action.type) {
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_REQUEST:
+      return {
+        ...state,
+        requestIndividualConfluencePages: true,
+      };
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_SUCCESS:
+      return {
+        ...state,
+        requestIndividualConfluencePages: false,
+        individualConfluencePages: action.payload,
+      };
+    case userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE:
+      return {
+        ...state,
+        requestIndividualConfluencePages: false,
+        individualConfluencePages: {},
+      };
     case userConstants.GET_INDIVIDUAL_CONTRIBUTION_REQUEST:
       return {
         ...state,

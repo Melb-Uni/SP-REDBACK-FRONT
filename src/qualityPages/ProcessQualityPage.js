@@ -200,7 +200,6 @@ function mapState(state) {
     confluenceData: state.user.teamConfluencePages,
     confluenceDataWeek: state.user.teamConfluencePagesWeek,
     confluenceDataMonth: state.user.teamConfluencePagesMonth,
-    confluenceDataChange: state.user.teamConfluencePagesChange,
     confluenceUpdateData: state.user.teamConfluenceUpdate,
     githubData: state.user.teamGithubCommits,
     jiraData: state.user.teamJiraTickets,
