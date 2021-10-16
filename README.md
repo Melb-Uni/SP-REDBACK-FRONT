@@ -93,5 +93,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 * Modify tables in Process Page
 ### 2021.10.11
 * Modify the donut chart in Contribution Page
+* Product Quality Page Drop-down Box and Table Change
 ### 2021.10.16
 * Restore old donut chart and modify new donut chart
+* Add titles to Contribution page Git and Jira
