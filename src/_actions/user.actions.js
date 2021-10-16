@@ -22,6 +22,7 @@ export const userActions = {
   getTeamCodeMetrics,
   setTeamInfo,
   getIndividualContribution,
+  getConfluenceIndividualData,
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -425,6 +426,37 @@ function getIndividualContribution(teamKey) {
   };
 }
 
+function getConfluenceIndividualData(teamKey) {
+  return (dispatch) => {
+    userService.getConfluenceIndividualData(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_SUCCESS,
+              formatDonutChartDataOriginal(response)
+            )
+          );
+        } else {
+          dispatch(
+            failure(userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE)
+          );
+          failureToast(response.message);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_INDIVIDUAL_CONFLUENCE_PAGES_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+  }
+
 function getConfluenceIndividualContribution(teamKey) {
   return (dispatch) => {
     dispatch(request(userConstants.GET_INDIVIDUAL_CONFLUENCE_CONTRIBUTION_REQUEST));
@@ -468,7 +500,7 @@ function getGithubIndividualData(teamKey) {
           dispatch(
             success(
               userConstants.GET_INDIVIDUAL_GITHUB_COMMITS_SUCCESS,
-              formatDonutChartData(response)
+              formatDonutChartDataOriginal(response)
             )
           );
         } else {

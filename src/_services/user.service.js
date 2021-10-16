@@ -12,6 +12,7 @@ export const userService = {
   setTeamInfo,
   getTeamCodeMetrics,
   getIndividualContribution,
+  getConfluenceIndividualData,
   getConfluenceIndividualContribution,
   getGithubIndividualData,
   getJiraIndividualData,
@@ -239,6 +240,21 @@ function getJiraIndividualContribution(teamKey) {
 
 function getIndividualContribution(teamKey) {
   let url = baseUrl + "/coordinator/"+teamKey+"/individual_contributions";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+function getConfluenceIndividualData(teamKey) {
+  let url = baseUrl + "/confluence/spaces/" + teamKey + "/pages/contributions";
 
   const requestOptions = {
     method: "GET",
