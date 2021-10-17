@@ -224,7 +224,7 @@ function getJiraIndividualData(teamKey) {
 
 // Get Individual Jira Contribution START
 function getJiraIndividualContribution(teamKey) {
-  let url = baseUrl + "/jira/" + teamKey + "/contributions";
+  let url = baseUrl + "/jira/" + teamKey + "/summary_url";
 
   const requestOptions = {
     method: "GET",
