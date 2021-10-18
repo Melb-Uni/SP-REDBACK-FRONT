@@ -48,9 +48,10 @@ class IndividualContributionPage extends React.Component {
         },
         {
           name: "Contribution",
-          selector: "change_log",
+          selector: "summary",
           wrap:true,
           grow:3,
+          cell: (row) =><a href={row.url}> {row.summary} </a>,
         },
       ],
       // Jira Contribution columns END
@@ -310,7 +311,7 @@ class IndividualContributionPage extends React.Component {
                               <br/><br/>
                               <h1 style={title_style}>• Contribution of Each Student</h1>
                               <Table
-                                title="Individual Contribution Details - Jira"
+                                //title="Individual Contribution Details - Jira"
                                 columns={this.state.jira_contribution_columns}
                                 data ={
                                   this.props.individualJiraContribution
@@ -337,7 +338,6 @@ class IndividualContributionPage extends React.Component {
 function mapState(state) {
   return {
     individualConfluenceData: state.user.individualConfluencePages,
-    individualGithubData: state.user.individualGitHubCommits,
     individualContribution: state.user.individualContribution,
     individualConfluenceContributionData: state.user.individualConfluenceContribution,
     individualGithubData: state.user.individualGitHubCommits,
@@ -351,7 +351,6 @@ function mapState(state) {
 
 const actionCreators = {
   getConfluenceIndividualData: userActions.getConfluenceIndividualData,
-  getGithubIndividualData: userActions.getGithubIndividualData,
   getIndividualContribution: userActions.getIndividualContribution,
   getConfluenceIndividualContribution: userActions.getConfluenceIndividualContribution,
   getGithubIndividualData: userActions.getGithubIndividualData,
