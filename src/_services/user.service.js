@@ -18,6 +18,9 @@ export const userService = {
   getJiraIndividualData,
   // Get Individual Jira Contribution
   getJiraIndividualContribution,
+  getJiraCycleTimeData,
+  getJiraThroughOutputData,
+  getJiraHistoryDataOnDay,
   getImportedProject,
   importProject,
   deleteImportedProject,
@@ -237,6 +240,48 @@ function getJiraIndividualContribution(teamKey) {
     });
 }
 // Get Individual Jira Contribution END
+
+function getJiraCycleTimeData(teamKey) {
+  let url = baseUrl + "/jira/" + teamKey + "/scatter_data";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+function getJiraThroughOutputData(teamKey) {
+  let url = baseUrl + "/jira/" + teamKey + "/throughput_data";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
+
+function getJiraHistoryDataOnDay(teamKey) {
+  let url = baseUrl + "/jira/" + teamKey + "/histogram_data";
+
+  const requestOptions = {
+    method: "GET",
+    credentials: "include",
+  };
+  return fetch(url, requestOptions)
+    .then((response) => response.json())
+    .then((jsonResponse) => {
+      return jsonResponse;
+    });
+}
 
 function getIndividualContribution(teamKey) {
   let url = baseUrl + "/coordinator/"+teamKey+"/individual_contributions";
