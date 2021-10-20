@@ -138,7 +138,61 @@ export function user(state = initState, action) {
           individualJiraContribution: {},
       };
     // INDIVIDUAL_JIRA_CONTRIBUTION END
-      
+
+    case userConstants.GET_TEAM_JIRA_CYCLETIME_REQUEST:
+        return {
+          ...state,
+          requestTeamJiraCycleTime: true,
+      };
+    case userConstants.GET_TEAM_JIRA_CYCLETIME_SUCCESS:
+        return {
+          ...state,
+          requestTeamJiraCycleTime: false,
+          teamJiraCycleTime: action.payload,
+      };
+    case userConstants.GET_TEAM_JIRA_CYCLETIME_FAILURE:
+        return {
+          ...state,
+          requestTeamJiraCycleTime: false,
+          teamJiraCycleTime: {},
+      };
+
+    case userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_REQUEST:
+        return {
+          ...state,
+          requestTeamJiraThroughOutput: true,
+      };
+    case userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_SUCCESS:
+        return {
+          ...state,
+          requestTeamJiraThroughOutput: false,
+          teamJiraThroughOutput: action.payload,
+      };
+    case userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_FAILURE:
+        return {
+          ...state,
+          requestTeamJiraThroughOutput: false,
+          teamJiraThroughOutput: {},
+      };
+
+    case userConstants.GET_TEAM_JIRA_HISTORY_REQUEST:
+        return {
+          ...state,
+          requestTeamJiraHistory: true,
+      };
+    case userConstants.GET_TEAM_JIRA_HISTORY_SUCCESS:
+        return {
+          ...state,
+          requestTeamJiraHistory: false,
+          teamJiraHistory: action.payload,
+      };
+    case userConstants.GET_TEAM_JIRA_HISTORY_FAILURE:
+        return {
+          ...state,
+          requestTeamJiraHistory: false,
+          teamJiraHistory: {},
+      };
+
     case userConstants.GET_TEAM_CONFLUENCE_PAGES_REQUEST:
       return {
         ...state,
