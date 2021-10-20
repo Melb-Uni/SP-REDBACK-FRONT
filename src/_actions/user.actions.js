@@ -28,6 +28,9 @@ export const userActions = {
   getJiraIndividualData,
   // Get Individual Jira Contribution
   getJiraIndividualContribution,
+  getJiraCycleTimeData,
+  getJiraThroughOutputData,
+  getJiraHistoryDataOnDay,
   getConfluenceSpaceByKeyWord,
   importProject,
   getImportedProject,
@@ -572,6 +575,93 @@ function getJiraIndividualContribution(teamKey) {
         dispatch(
           failure(
             userConstants.GET_INDIVIDUAL_JIRA_CONTRIBUTION_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+
+function getJiraCycleTimeData(teamKey) {
+  return (dispatch) => {
+    userService.getJiraCycleTimeData(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_JIRA_CYCLETIME_SUCCESS,
+              response.data
+            )
+          );
+        } else {
+          dispatch(failure(userConstants.GET_TEAM_JIRA_CYCLETIME_FAILURE));
+          failureToast(response.msg);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_JIRA_CYCLETIME_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+
+function getJiraThroughOutputData(teamKey) {
+  return (dispatch) => {
+    userService.getJiraThroughOutputData(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_SUCCESS,
+              response.data
+            )
+          );
+        } else {
+          dispatch(failure(userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_FAILURE));
+          failureToast(response.msg);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_JIRA_THROUGHOUTPUT_FAILURE,
+            error.toString()
+          )
+        );
+        failureToast(error.toString());
+      }
+    );
+  };
+}
+
+function getJiraHistoryDataOnDay(teamKey) {
+  return (dispatch) => {
+    userService.getJiraHistoryDataOnDay(teamKey).then(
+      (response) => {
+        if (checkRespCode(response)) {
+          dispatch(
+            success(
+              userConstants.GET_TEAM_JIRA_HISTORY_SUCCESS,
+              response.data
+            )
+          );
+        } else {
+          dispatch(failure(userConstants.GET_TEAM_JIRA_HISTORY_FAILURE));
+          failureToast(response.msg);
+        }
+      },
+      (error) => {
+        dispatch(
+          failure(
+            userConstants.GET_TEAM_JIRA_HISTORY_FAILURE,
             error.toString()
           )
         );
