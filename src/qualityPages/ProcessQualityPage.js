@@ -2,6 +2,9 @@ import React from "react";
 import ButtonGroup from "../_utils/ButtonGroup";
 import Banner from "../_utils/Banner";
 import LineChart from "../_utils/LineChart";
+import ThreeLineChart from "../_utils/ThreeLineChart";
+import MultiBarChart from "../_utils/MultiBarChart";
+import {formatScatterData} from "../_utils/formatScatterData.js";
 import uomHeader from "../header/uomheader.js";
 import { userActions } from "../_actions";
 import { connect } from "react-redux";
@@ -11,6 +14,12 @@ import { Spin } from "antd";
 import { InformationalNote } from "../_utils/Alert";
 import { alertConstants } from "../_constants";
 import Table from "../_utils/Table";
+import { Scatter } from "react-chartjs-2";
+
+const title_style = {
+      color:'grey',
+      marginLeft: '150px',
+    };
 
 class ProcessQualityPage extends React.Component {
   constructor(props) {
@@ -44,6 +53,32 @@ class ProcessQualityPage extends React.Component {
           selector: "link",
           cell: (row) => <a href={row.link}>{row.link}</a>,
         },
+      ],
+      jira_cycle_time_columns:[
+        {
+          name: "Completed Time",
+          selector: "completed",
+        },
+        {
+          name: "Cycle Time",
+          selector: "cycle_time",
+	      },
+	      {
+	        name: "Summary",
+	        selector: "summary",
+          wrap:true,
+          grow:3,
+        },
+      ],
+      jira_through_output_columns:[
+        {
+          name: "Completed Time",
+          selector: "completed",
+        },
+        {
+          name: "Count",
+          selector: "count",
+	      },
       ],
       hasConfig:
         this.props.teamInfo && this.props.teamInfo[this.props.currentTeamKey],
@@ -177,10 +212,13 @@ class ProcessQualityPage extends React.Component {
                       </table>
                     </div>
                 )}
-              {this.state.hasConfig &&
-                this.state.btnSelected == commonConstants.JIRA && (
-                  <LineChart data={this.props.jiraData} />
-                )}
+              {this.state.hasConfig && this.state.btnSelected == commonConstants.JIRA && (
+		            <div><h1 style={title_style}>Previous Chart, showing Jira Progress ONLY</h1>
+                     <LineChart data={this.props.jiraData}   />
+                     <Table title="Cycle Time Data - Jira" columns={this.state.jira_cycle_time_columns} data={this.state.jiraCycleTime} max-width={"50vw"} height={"50vh"}/>
+                     <Table title="Through Output Data - Jira" columns={this.state.jira_through_output_columns} data={this.state.jiraThroughOutput} max-width={"50vw"} height={"50vh"}/>
+                </div>
+               )}
             </Spin>
           </div>
         </div>
@@ -203,6 +241,9 @@ function mapState(state) {
     confluenceUpdateData: state.user.teamConfluenceUpdate,
     githubData: state.user.teamGithubCommits,
     jiraData: state.user.teamJiraTickets,
+    jiraCycleTime: state.user.teamJiraCycleTime,
+    jiraThroughOutput: state.user.teamJiraThroughOutput,
+    jiraHistoryOnDay: state.user.teamJiraHistory,
     currentTeamKey: state.user.currentTeamKey,
     currentTeamName: state.user.currentTeamName,
     teamInfo: state.user.teamInfo,
@@ -216,6 +257,9 @@ const actionCreators = {
   getTeamConfluenceUpdate: userActions.getTeamConfluenceUpdate,
   getTeamGithubCommits: userActions.getTeamGithubCommits,
   getTeamJiraTickets: userActions.getTeamJiraTickets,
+  getTeamJiraCycleTime: userActions.getJiraCycleTimeData,
+  getTeamJiraThroughOutput: userActions.getJiraThroughOutputData,
+  getTeamJiraHistoryOnDay: userActions.getJiraHistoryDataOnDay,
 };
 
 const qualityPage = connect(mapState, actionCreators)(ProcessQualityPage);
