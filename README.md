@@ -103,3 +103,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### 2021.Oct.21
 * Add the titles to charts, and add labels to the x and y axis
 * Add the Scatter & Through Output Details
+* Release comp90082_s2_sp_v2.0
