@@ -78,22 +78,28 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 # Change Log
 ## Version 1: (2021.September.19)
-### 2021.9.14
+### 2021.Sep.14
 * Individual Confluence Pages Contribution
-### 2021.9.16
+### 2021.Sep.16
 * Activate new features in Process Page and Communication Page
-### 2021.9.16
+### 2021.Sep.16
 * Add new features in Individual Contribution Page
-### 2021.9.19
+### 2021.Sep.19
 * Add Git Individual Contribution & Process Quality Feature
 * Release comp90082_s2_sp_v1.0
-### 2021.10.1
+### 2021.Oct.1
 * Modify tables in Individual and Process Page
-### 2021.10.7
+### 2021.Oct.7
 * Modify tables in Process Page
-### 2021.10.11
+### 2021.Oct.11
 * Modify the donut chart in Contribution Page
 * Product Quality Page Drop-down Box and Table Change
-### 2021.10.16
+### 2021.Oct.16
 * Restore old donut chart and modify new donut chart
 * Add titles to Contribution page Git and Jira
+### 2021.Oct.18
+* Add hyper-links directly to Jira on the detail table of the individual contribution page.
+* Remove the duplicates, Improve the Readbility of the codes
+### 2021.Oct.21
+* Add the titles to charts, and add labels to the x and y axis
+* Add the Scatter & Through Output Details
